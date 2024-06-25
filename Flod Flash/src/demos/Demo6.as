@@ -39,7 +39,7 @@
     STPlayer    Ultimate Soundtracker         neoart.flod.trackers
     DWPlayer    David Whittaker               neoart.flod.whittaker
 */
-package {
+package demos {
   import flash.display.*;
   import flash.events.*;
   import flash.net.*;
@@ -47,9 +47,8 @@ package {
   import neoart.flod.sidmon.*;
 
   public final class Demo6 extends Sprite {
-    private var
-      url    : URLLoader,
-      player : S1Player;
+    private var   url    : URLLoader;
+     private var  player : S1Player;
 
     public function Demo6() {
       player = new S1Player();

@@ -18,10 +18,9 @@
 package neoart.flod.core {
 
   public class AmigaRow {
-    public var
-      note   : int,
-      sample : int,
-      effect : int,
-      param  : int;
+    public var note   : int;
+    public var sample : int;
+    public var effect : int;
+    public var param  : int;
   }
 }

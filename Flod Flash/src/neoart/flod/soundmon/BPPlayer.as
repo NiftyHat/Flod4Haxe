@@ -20,20 +20,20 @@ package neoart.flod.soundmon {
   import neoart.flod.core.*;
 
   public final class BPPlayer extends AmigaPlayer {
-    private var
-      tracks      : Vector.<BPStep>,
-      patterns    : Vector.<AmigaRow>,
-      samples     : Vector.<BPSample>,
-      length      : int,
-      buffer      : Vector.<int>,
-      voices      : Vector.<BPVoice>,
-      trackPos    : int,
-      patternPos  : int,
-      nextPos     : int,
-      jumpFlag    : int,
-      repeatCtr   : int,
-      arpeggioCtr : int,
-      vibratoPos  : int;
+    
+    private var tracks      : Vector.<BPStep>;
+    private var patterns    : Vector.<AmigaRow>;
+    private var samples     : Vector.<BPSample>;
+    private var length      : int;
+    private var buffer      : Vector.<int>;
+    private var voices      : Vector.<BPVoice>;
+    private var trackPos    : int;
+    private var patternPos  : int;
+    private var nextPos     : int;
+    private var jumpFlag    : int;
+    private var repeatCtr   : int;
+    private var arpeggioCtr : int;
+    private var vibratoPos  : int;
 
     public function BPPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -59,8 +59,12 @@ package neoart.flod.soundmon {
         chan = voice.channel;
         voice.period += voice.autoSlide;
 
-        if (voice.vibrato) chan.period = voice.period + (VIBRATO[vibratoPos] / voice.vibrato);
-          else chan.period = voice.period;
+        if (voice.vibrato) {
+			chan.period = voice.period + (VIBRATO[vibratoPos] / voice.vibrato);
+		}
+          else {
+			  chan.period = voice.period;
+		  }
 
         chan.pointer = voice.samplePtr;
         chan.length  = voice.sampleLen;
@@ -69,9 +73,9 @@ package neoart.flod.soundmon {
           note = voice.note;
 
           if (!arpeggioCtr)
-            note += ((voice.arpeggio & 0xf0) >> 4) + ((voice.autoArpeggio & 0xf0) >> 4);
+            {note += ((voice.arpeggio & 0xf0) >> 4) + ((voice.autoArpeggio & 0xf0) >> 4);}
           else if (arpeggioCtr == 1)
-            note += (voice.arpeggio & 0x0f) + (voice.autoArpeggio & 0x0f);
+           { note += (voice.arpeggio & 0x0f) + (voice.autoArpeggio & 0x0f);}
 
           chan.period = voice.period = PERIODS[int(note + 35)];
           voice.restart = 0;
@@ -247,8 +251,8 @@ package neoart.flod.soundmon {
             voice.note = note;
             voice.period = PERIODS[int(note + 35)];
 
-            if (option < 13) voice.restart = voice.volumeDef = 1;
-              else voice.restart = 0;
+            if (option < 13) {voice.restart = voice.volumeDef = 1;}
+              else{voice.restart = 0;}
 
             instr = row.sample;
             if (instr == 0) instr = voice.sample;
@@ -286,8 +290,8 @@ package neoart.flod.soundmon {
               voice.arpeggio = 0;
               break;
             case 6:   //set vibrato
-              if (version == BPSOUNDMON_V3) voice.vibrato = data;
-                else repeatCtr = data;
+              if (version == BPSOUNDMON_V3) {voice.vibrato = data;}
+                else {repeatCtr = data;}
               break;
             case 7:   //step jump
               if (version == BPSOUNDMON_V3) {
@@ -484,9 +488,9 @@ package neoart.flod.soundmon {
         version = BPSOUNDMON_V1;
       } else {
         id = id.substr(0, 3);
-        if (id == "V.2") version = BPSOUNDMON_V2;
-          else if (id == "V.3") version = BPSOUNDMON_V3;
-            else return;
+        if (id == "V.2") {version = BPSOUNDMON_V2;}
+          else if (id == "V.3") {version = BPSOUNDMON_V3;}
+            else {return;}
 
         stream.position = 29;
         tables = stream.readUnsignedByte();
@@ -602,21 +606,20 @@ package neoart.flod.soundmon {
       }
     }
 
-    public static const
-      BPSOUNDMON_V1 = 1,
-      BPSOUNDMON_V2 = 2,
-      BPSOUNDMON_V3 = 3;
+    private const BPSOUNDMON_V1 :int = 1;
+    private const BPSOUNDMON_V2 :int = 2;
+    private const BPSOUNDMON_V3 :int = 3;
 
-    private const
-      PERIODS: Vector.<int> = Vector.<int>([
+    
+    private const PERIODS: Vector.<int> = Vector.<int>([
         6848,6464,6080,5760,5440,5120,4832,4576,4320,4064,3840,3616,
         3424,3232,3040,2880,2720,2560,2416,2288,2160,2032,1920,1808,
         1712,1616,1520,1440,1360,1280,1208,1144,1080,1016, 960, 904,
          856, 808, 760, 720, 680, 640, 604, 572, 540, 508, 480, 452,
          428, 404, 380, 360, 340, 320, 302, 286, 270, 254, 240, 226,
          214, 202, 190, 180, 170, 160, 151, 143, 135, 127, 120, 113,
-         107, 101,  95,  90,  85,  80,  76,  72,  68,  64,  60,  57]),
+         107, 101,  95,  90,  85,  80,  76,  72,  68,  64,  60,  57]);
 
-      VIBRATO: Vector.<int> = Vector.<int>([0,64,128,64,0,-64,-128,-64]);
+     private const VIBRATO: Vector.<int> = Vector.<int>([0,64,128,64,0,-64,-128,-64]);
   }
 }

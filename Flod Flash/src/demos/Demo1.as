@@ -21,7 +21,7 @@
   formats, loaded from the client.
 
 */
-package {
+package demos {
   import flash.display.*;
   import flash.events.*;
   import flash.net.*;
@@ -29,12 +29,11 @@ package {
   import neoart.flod.core.*;
 
   public final class Demo1 extends Sprite {
-    private var
-      file   : FileReference,
-      loader : FileLoader,
-      player : CorePlayer;
+    private var  file   : FileReference;
+    private var   loader : FileLoader;
+    private var   player : CorePlayer;
 
-    public function Demo1() {
+    public function Demo1(stage:Stage) {
       loader = new FileLoader();
 
       stage.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):void {
@@ -60,7 +59,10 @@ package {
     private function completeHandler(e:Event):void {
       file.removeEventListener(Event.COMPLETE, completeHandler);
       player = loader.load(file.data);
-      if (player && player.version) player.play();
+      if (player && player.version) {
+		  player.play();
+		  trace(player.toString());
+	  }
     }
   }
 }

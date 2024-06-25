@@ -20,16 +20,16 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class HMPlayer extends AmigaPlayer {
-    private var
-      track      : Vector.<int>,
-      patterns   : Vector.<AmigaRow>,
-      samples    : Vector.<HMSample>,
-      length     : int,
-      restart    : int,
-      voices     : Vector.<HMVoice>,
-      trackPos   : int,
-      patternPos : int,
-      jumpFlag   : int;
+    
+    private var track      : Vector.<int>;
+    private var patterns   : Vector.<AmigaRow>;
+    private var samples    : Vector.<HMSample>;
+    private var length     : int;
+    private var restart    : int;
+    private var voices     : Vector.<HMVoice>;
+    private var trackPos   : int;
+    private var patternPos : int;
+    private var jumpFlag   : int;
 
     public function HMPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -126,8 +126,11 @@ package neoart.flod.trackers {
             case 15:  //set speed
               value = voice.param;
 
-              if (value < 1) value = 1;
-                else if (value > 31) value = 31;
+              if (value < 1) {
+			  value = 1;}
+                else if (value > 31) {
+					value = 31;
+			  }
 
               speed = value;
               tick = 0;
@@ -250,7 +253,7 @@ package neoart.flod.trackers {
         } else {
           id = id.substr(0, 2);
           if (id == "El")
-            stream.position += 18;
+            {stream.position += 18;}
           else {
             stream.position -= 4;
             id = stream.readMultiByte(22, ENCODING);
@@ -335,8 +338,8 @@ package neoart.flod.trackers {
           case 0:   //arpeggio
             value = tick % 3;
             if (!value) break;
-            if (value == 1) value = voice.param >> 4;
-              else value = voice.param & 0x0f;
+            if (value == 1) {value = voice.param >> 4;}
+              else {value = voice.param & 0x0f;}
 
             len = 37 - value;
 
@@ -359,7 +362,7 @@ package neoart.flod.trackers {
             break;
           case 3:   //tone portamento
           case 5:   //tone portamento + volume slide
-            if (voice.effect == 5) slide = 1;
+            if (voice.effect == 5) {slide = 1;}
             else if (voice.param) {
               voice.portaSpeed = voice.param;
               voice.param = 0;
@@ -384,14 +387,14 @@ package neoart.flod.trackers {
             break;
           case 4:   //vibrato
           case 6:   //vibrato + volume slide;
-            if (voice.effect == 6) slide = 1;
-              else if (voice.param) voice.vibratoSpeed = voice.param;
+            if (voice.effect == 6) {slide = 1;}
+              else if (voice.param) {voice.vibratoSpeed = voice.param;}
 
             value = VIBRATO[int((voice.vibratoPos >> 2) & 31)];
             value = ((voice.vibratoSpeed & 0x0f) * value) >> 7;
 
-            if (voice.vibratoPos > 127) period -= value;
-              else period += value;
+            if (voice.vibratoPos > 127) {period -= value;}
+              else {period += value;}
 
             value = (voice.vibratoSpeed >> 2) & 60;
             voice.vibratoPos = (voice.vibratoPos + value) & 255;
@@ -416,11 +419,11 @@ package neoart.flod.trackers {
       if (slide) {
         value = voice.param >> 4;
 
-        if (value) voice.volume2 += value;
-          else voice.volume2 -= voice.param & 0x0f;
+        if (value) {voice.volume2 += value;}
+          else {voice.volume2 -= voice.param & 0x0f;}
 
-        if (voice.volume2 > 64) voice.volume2 = 64;
-          else if (voice.volume2 < 0) voice.volume2 = 0;
+        if (voice.volume2 > 64) {voice.volume2 = 64;}
+          else if (voice.volume2 < 0) {voice.volume2 = 0;}
       }
     }
 
@@ -439,8 +442,7 @@ package neoart.flod.trackers {
       voice.channel.volume = (voice.volume1 * voice.volume2) >> 6;
     }
 
-    private const
-      MEGARPEGGIO: Vector.<int> = Vector.<int>([
+    private const MEGARPEGGIO: Vector.<int> = Vector.<int>([
          0, 3, 7,12,15,12, 7, 3, 0, 3, 7,12,15,12, 7, 3,
          0, 4, 7,12,16,12, 7, 4, 0, 4, 7,12,16,12, 7, 4,
          0, 3, 8,12,15,12, 8, 3, 0, 3, 8,12,15,12, 8, 3,
@@ -456,14 +458,14 @@ package neoart.flod.trackers {
          0,12, 0,12, 0,12, 0,12, 0,12, 0,12, 0,12, 0,12,
          0,12,24,12, 0,12,24,12, 0,12,24,12, 0,12,24,12,
          0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3,
-         0, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4]),
+         0, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4]);
 
-      PERIODS: Vector.<int> = Vector.<int>([
+    private const PERIODS: Vector.<int> = Vector.<int>([
         856,808,762,720,678,640,604,570,538,508,480,453,
         428,404,381,360,339,320,302,285,269,254,240,226,
-        214,202,190,180,170,160,151,143,135,127,120,113,0]),
+        214, 202, 190, 180, 170, 160, 151, 143, 135, 127, 120, 113, 0]);
 
-      VIBRATO: Vector.<int> = Vector.<int>([
+    private const VIBRATO: Vector.<int> = Vector.<int>([
           0, 24, 49, 74, 97,120,141,161,180,197,212,224,
         235,244,250,253,255,253,250,244,235,224,212,197,
         180,161,141,120, 97, 74, 49, 24]);

@@ -19,13 +19,13 @@ package neoart.flod.digitalmugician {
   import neoart.flod.core.*;
 
   public final class DMSong {
-    internal var
-      title    : String,
-      speed    : int,
-      length   : int,
-      loop     : int,
-      loopStep : int,
-      tracks   : Vector.<AmigaStep>;
+    
+    internal var title    : String;
+    internal var speed    : int;
+    internal var length   : int;
+    internal var loop     : int;
+    internal var loopStep : int;
+    internal var tracks   : Vector.<AmigaStep>;
 
     public function DMSong() {
       tracks = new Vector.<AmigaStep>();

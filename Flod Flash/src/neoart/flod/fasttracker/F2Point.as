@@ -18,9 +18,9 @@
 package neoart.flod.fasttracker {
 
   public final class F2Point {
-    internal var
-      frame : int,
-      value : int;
+    
+    internal var  frame : int;
+     internal var value : int;
 
     public function F2Point(x:int = 0, y:int = 0) {
       frame = x;

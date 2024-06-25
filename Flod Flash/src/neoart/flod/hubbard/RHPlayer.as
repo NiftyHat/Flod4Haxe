@@ -20,15 +20,15 @@ package neoart.flod.hubbard {
   import neoart.flod.core.*;
 
   public final class RHPlayer extends AmigaPlayer {
-    private var
-      songs    : Vector.<RHSong>,
-      samples  : Vector.<RHSample>,
-      song     : RHSong,
-      periods  : int,
-      vibrato  : int,
-      voices   : Vector.<RHVoice>,
-      stream   : ByteArray,
-      complete : int;
+    
+    private var songs    : Vector.<RHSong>;
+    private var samples  : Vector.<RHSample>;
+    private var song     : RHSong;
+    private var periods  : int;
+    private var vibrato  : int;
+    private var voices   : Vector.<RHVoice>;
+    private var stream   : ByteArray;
+    private var complete : int;
 
     public function RHPlayer(amiga:Amiga = null) {
       super(amiga);

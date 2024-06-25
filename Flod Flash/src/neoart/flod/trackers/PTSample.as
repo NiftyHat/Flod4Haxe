@@ -19,8 +19,7 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class PTSample extends AmigaSample {
-    internal var
-      finetune : int,
-      realLen  : int;
+    internal var finetune : int;
+    internal var realLen  : int;
   }
 }

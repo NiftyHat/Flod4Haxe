@@ -20,15 +20,15 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class STPlayer extends AmigaPlayer {
-    private var
-      track      : Vector.<int>,
-      patterns   : Vector.<AmigaRow>,
-      samples    : Vector.<AmigaSample>,
-      length     : int,
-      voices     : Vector.<STVoice>,
-      trackPos   : int,
-      patternPos : int,
-      jumpFlag   : int;
+    
+    private var track      : Vector.<int>;
+    private var patterns   : Vector.<AmigaRow>;
+    private var samples    : Vector.<AmigaSample>;
+    private var length     : int;
+    private var voices     : Vector.<STVoice>;
+    private var trackPos   : int;
+    private var patternPos : int;
+    private var jumpFlag   : int;
 
     public function STPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -46,9 +46,9 @@ package neoart.flod.trackers {
 
     override public function set force(value:int):void {
       if (value < ULTIMATE_SOUNDTRACKER)
-        value = ULTIMATE_SOUNDTRACKER;
+        {value = ULTIMATE_SOUNDTRACKER;}
       else if (value > DOC_SOUNDTRACKER_20)
-        value = DOC_SOUNDTRACKER_20;
+        {value = DOC_SOUNDTRACKER_20;}
 
       version = value;
     }
@@ -78,8 +78,8 @@ package neoart.flod.trackers {
           if (row.sample) {
             sample = voice.sample = samples[row.sample];
 
-            if (((version & 2) == 2) && voice.effect == 12) chan.volume = voice.param;
-              else chan.volume = sample.volume;
+            if (((version & 2) == 2) && voice.effect == 12) {chan.volume = voice.param;}
+              else {chan.volume = sample.volume;}
           } else {
             sample = voice.sample;
           }
@@ -138,8 +138,8 @@ package neoart.flod.trackers {
             } else if (voice.effect == 2) {
               value = voice.param >> 4;
 
-              if (value) voice.period += value;
-                else voice.period -= (voice.param & 0x0f);
+              if (value) {voice.period += value;}
+                else {voice.period -= (voice.param & 0x0f);}
 
               chan.period = voice.period;
             }
@@ -335,8 +335,8 @@ package neoart.flod.trackers {
         return;
       }
 
-      if (param == 1) param = voice.param >> 4;
-        else param = voice.param & 0x0f;
+      if (param == 1) {param = voice.param >> 4;}
+        else {param = voice.param & 0x0f;}
 
       while (voice.last != PERIODS[i]) i++;
       chan.period = PERIODS[int(i + param)];
@@ -353,14 +353,13 @@ package neoart.flod.trackers {
       return 1;
     }
 
-    public static const
-      ULTIMATE_SOUNDTRACKER : int = 1,
-      DOC_SOUNDTRACKER_9    : int = 2,
-      MASTER_SOUNDTRACKER   : int = 3,
-      DOC_SOUNDTRACKER_20   : int = 4;
+    
+    public static const ULTIMATE_SOUNDTRACKER : int = 1;
+    public static const DOC_SOUNDTRACKER_9    : int = 2;
+    public static const MASTER_SOUNDTRACKER   : int = 3;
+    public static const DOC_SOUNDTRACKER_20   : int = 4;
 
-    private const
-      PERIODS: Vector.<int> = Vector.<int>([
+    private const PERIODS: Vector.<int> = Vector.<int>([
         856,808,762,720,678,640,604,570,538,508,480,453,
         428,404,381,360,339,320,302,285,269,254,240,226,
         214,202,190,180,170,160,151,143,135,127,120,113,

@@ -18,13 +18,13 @@
 package neoart.flod.core {
 
   public class AmigaSample {
-    public var
-      name    : String = "",
-      length  : int,
-      loop    : int,
-      repeat  : int,
-      volume  : int,
-      pointer : int,
-      loopPtr : int;
+    
+    public var name    : String = "";
+    public var length  : int;
+    public var loop    : int;
+    public var repeat  : int;
+    public var volume  : int;
+    public var pointer : int;
+    public var loopPtr : int;
   }
 }

@@ -19,13 +19,13 @@ package neoart.flod.deltamusic {
   import neoart.flod.core.*;
 
   public final class D2Sample extends AmigaSample {
-    internal var
-      index     : int,
-      pitchBend : int,
-      synth     : int,
-      table     : Vector.<int>,
-      vibratos  : Vector.<int>,
-      volumes   : Vector.<int>;
+    
+    internal var index     : int;
+    internal var pitchBend : int;
+    internal var synth     : int;
+    internal var table     : Vector.<int>;
+    internal var vibratos  : Vector.<int>;
+    internal var volumes   : Vector.<int>;
 
     public function D2Sample() {
       table    = new Vector.<int>(48, true);

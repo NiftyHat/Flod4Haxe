@@ -19,23 +19,23 @@ package neoart.flod.deltamusic {
   import neoart.flod.core.*;
 
   public final class D1Sample extends AmigaSample {
-    internal var
-      synth        : int,
-      attackStep   : int,
-      attackDelay  : int,
-      decayStep    : int,
-      decayDelay   : int,
-      releaseStep  : int,
-      releaseDelay : int,
-      sustain      : int,
-      arpeggio     : Vector.<int>,
-      pitchBend    : int,
-      portamento   : int,
-      table        : Vector.<int>,
-      tableDelay   : int,
-      vibratoWait  : int,
-      vibratoStep  : int,
-      vibratoLen   : int;
+    
+    internal var synth        : int;
+    internal var attackStep   : int;
+    internal var attackDelay  : int;
+    internal var decayStep    : int;
+    internal var decayDelay   : int;
+    internal var releaseStep  : int;
+    internal var releaseDelay : int;
+    internal var sustain      : int;
+    internal var arpeggio     : Vector.<int>;
+    internal var pitchBend    : int;
+    internal var portamento   : int;
+    internal var table        : Vector.<int>;
+    internal var tableDelay   : int;
+    internal var vibratoWait  : int;
+    internal var vibratoStep  : int;
+    internal var vibratoLen   : int;
 
     public function D1Sample() {
       arpeggio = new Vector.<int>( 8, true);

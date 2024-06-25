@@ -18,10 +18,10 @@
 package neoart.flod.fred {
 
   public final class FESong {
-    internal var
-      speed  : int,
-      length : int,
-      tracks : Vector.<Vector.<int>>;
+    
+    internal var speed  : int;
+    internal var length : int;
+    internal var tracks : Vector.<Vector.<int>>;
 
     public function FESong() {
       tracks = new Vector.<Vector.<int>>(4, true);

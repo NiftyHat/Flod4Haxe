@@ -20,41 +20,41 @@ package neoart.flod.whittaker {
   import neoart.flod.core.*;
 
   public final class DWPlayer extends AmigaPlayer {
-    private var
-      songs         : Vector.<DWSong>,
-      samples       : Vector.<DWSample>,
-      stream        : ByteArray,
-      song          : DWSong,
-      songvol       : int,
-      master        : int,
-      periods       : int,
-      frqseqs       : int,
-      volseqs       : int,
-      transpose     : int,
-      slower        : int,
-      slowerCounter : int,
-      delaySpeed    : int,
-      delayCounter  : int,
-      fadeSpeed     : int,
-      fadeCounter   : int,
-      wave          : DWSample,
-      waveCenter    : int,
-      waveLo        : int,
-      waveHi        : int,
-      waveDir       : int,
-      waveLen       : int,
-      wavePos       : int,
-      waveRateNeg   : int,
-      waveRatePos   : int,
-      voices        : Vector.<DWVoice>,
-      active        : int,
-      complete      : int,
-      base          : int,
-      com2          : int,
-      com3          : int,
-      com4          : int,
-      readMix       : String,
-      readLen       : int;
+    
+    private var songs         : Vector.<DWSong>;
+    private var samples       : Vector.<DWSample>;
+    private var stream        : ByteArray;
+    private var song          : DWSong;
+    private var songvol       : int;
+    private var master        : int;
+    private var periods       : int;
+    private var frqseqs       : int;
+    private var volseqs       : int;
+    private var transpose     : int;
+    private var slower        : int;
+    private var slowerCounter : int;
+    private var delaySpeed    : int;
+    private var delayCounter  : int;
+    private var fadeSpeed     : int;
+    private var fadeCounter   : int;
+    private var wave          : DWSample;
+    private var waveCenter    : int;
+    private var waveLo        : int;
+    private var waveHi        : int;
+    private var waveDir       : int;
+    private var waveLen       : int;
+    private var wavePos       : int;
+    private var waveRateNeg   : int;
+    private var waveRatePos   : int;
+    private var voices        : Vector.<DWVoice>;
+    private var active        : int;
+    private var complete      : int;
+    private var base          : int;
+    private var com2          : int;
+    private var com3          : int;
+    private var com4          : int;
+    private var readMix       : String;
+    private var readLen       : int;
 
     public function DWPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -160,8 +160,9 @@ package neoart.flod.whittaker {
                 stream.position = pos;
               } else {
                 switch (value) {
+                   
                   case -128:
-                    stream.position = voice.trackPtr + voice.trackPos;
+					stream.position = voice.trackPtr + voice.trackPos;
                     value = stream[readMix]();
 
                     if (value) {
@@ -169,7 +170,7 @@ package neoart.flod.whittaker {
                       voice.trackPos += readLen;
                     } else {
                       stream.position = voice.trackPtr;
-                      stream.position = base + stream[readMix]();
+                      stream.position = base + stream[readMix]() as uint;
                       voice.trackPos = readLen;
 
                       if (!loopSong) {
@@ -407,7 +408,7 @@ package neoart.flod.whittaker {
         voice.trackPtr   = song.tracks[voice.index];
         voice.trackPos   = readLen;
         stream.position  = voice.trackPtr;
-        voice.patternPos = base + stream[readMix]();
+        voice.patternPos = base + stream[readMix]() as uint;
 
         if (frqseqs) {
           stream.position = frqseqs;
@@ -508,7 +509,7 @@ package neoart.flod.whittaker {
         if (song.speed > 255) break;
 
         for (i = 0; i < channels; ++i) {
-          value = base + stream[readMix]();
+          value = base + stream[readMix]() as uint;
           if (value < lower) lower = value;
           song.tracks[i] = value;
         }
@@ -741,6 +742,7 @@ package neoart.flod.whittaker {
             break;
           case 0x4ef3:                                                          //jmp (a3,a2.w)
             stream.position += 2;
+			break;
           case 0x4ed2:                                                          //jmp a2
             lower = stream.position;
             stream.position -= 10;

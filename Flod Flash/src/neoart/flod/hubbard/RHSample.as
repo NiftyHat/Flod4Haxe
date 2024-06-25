@@ -19,12 +19,12 @@ package neoart.flod.hubbard {
   import neoart.flod.core.*;
 
   public final class RHSample extends AmigaSample {
-    internal var
-      relative : int,
-      divider  : int,
-      vibrato  : int,
-      hiPos    : int,
-      loPos    : int,
-      wave     : Vector.<int>;
+    
+    internal var relative : int;
+    internal var divider  : int;
+    internal var vibrato  : int;
+    internal var hiPos    : int;
+    internal var loPos    : int;
+    internal var wave     : Vector.<int>;
   }
 }

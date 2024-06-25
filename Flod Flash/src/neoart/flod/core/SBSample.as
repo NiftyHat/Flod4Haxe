@@ -19,15 +19,15 @@ package neoart.flod.core {
   import flash.utils.*;
 
   public class SBSample {
-    public var
-      name      : String = "",
-      bits      : int = 8,
-      volume    : int,
-      length    : int,
-      data      : Vector.<Number>,
-      loopMode  : int,
-      loopStart : int,
-      loopLen   : int;
+    
+    public var name      : String = "";
+    public var bits      : int = 8;
+    public var volume    : int;
+    public var length    : int;
+    public var data      : Vector.<Number>;
+    public var loopMode  : int;
+    public var loopStart : int;
+    public var loopLen   : int;
 
     public function store(stream:ByteArray):void {
       var delta:int, i:int, len:int = length, pos:int, sample:Number, total:int, value:int;
@@ -45,13 +45,19 @@ package neoart.flod.core {
         total = pos + len;
 
         if (total > stream.length)
-          len = stream.length - pos;
+          {
+			  len = stream.length - pos;
+		  }
 
         for (i = 0; i < len; ++i) {
           value = stream.readByte() + delta;
 
-          if (value < -128) value += 256;
-            else if (value > 127) value -= 256;
+          if (value < -128) {
+			  value += 256;
+		  }
+            else if (value > 127) {
+				value -= 256;
+			}
 
           data[i] = value * 0.0078125;
           delta = value;
@@ -65,8 +71,12 @@ package neoart.flod.core {
         for (i = 0; i < len; ++i) {
           value = stream.readShort() + delta;
 
-          if (value < -32768) value += 65536;
-            else if (value > 32767) value -= 65536;
+          if (value < -32768) {
+		  value += 65536;
+		  }
+            else if (value > 32767) {
+				value -= 65536;
+			}
 
           data[i] = value * 0.00003051758;
           delta = value;
@@ -89,11 +99,16 @@ package neoart.flod.core {
 
       if (len != length) {
         sample = data[int(len - 1)];
-        for (i = len; i < length; ++i) data[i] = sample;
+        for (i = len; i < length; ++i) {
+			data[i] = sample;
+		}
       }
 
-      if (total < stream.length) stream.position = total;
-        else stream.position = stream.length - 1;
+      if (total < stream.length) {
+	  stream.position = total;}
+        else {
+			stream.position = stream.length - 1;
+		}
     }
   }
 }

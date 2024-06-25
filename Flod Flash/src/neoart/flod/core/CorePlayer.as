@@ -22,27 +22,27 @@ package neoart.flod.core {
   import neoart.flip.*;
 
   public class CorePlayer extends EventDispatcher {
-    public static const
-      ENCODING : String = "us-ascii";
-    public var
-      quality   : int,
-      record    : int,
-      playSong  : int,
-      lastSong  : int,
-      version   : int,
-      variant   : int,
-      title     : String = "",
-      channels  : int,
-      loopSong  : int,
-      speed     : int,
-      tempo     : int;
-    protected var
-      hardware  : CoreMixer,
-      sound     : Sound,
-      soundChan : SoundChannel,
-      soundPos  : Number = 0.0,
-      endian    : String,
-      tick      : int;
+    
+    public static const ENCODING : String = "us-ascii";
+    
+    public var quality   : int;
+    public var record    : int;
+    public var playSong  : int;
+    public var lastSong  : int;
+    public var version   : int;
+    public var variant   : int;
+    public var title     : String = "";
+    public var channels  : int;
+    public var loopSong  : int;
+    public var speed     : int;
+    public var tempo     : int;
+    
+    protected var hardware  : CoreMixer;
+    protected var sound     : Sound;
+    protected var soundChan : SoundChannel;
+    protected var soundPos  : Number = 0.0;
+    protected var endian    : String;
+    protected var tick      : int;
 
     public function CorePlayer(hardware:CoreMixer) {
       hardware.player = this;

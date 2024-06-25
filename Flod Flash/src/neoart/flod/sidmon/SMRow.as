@@ -19,7 +19,6 @@ package neoart.flod.sidmon {
   import neoart.flod.core.*;
 
   public final class SMRow extends AmigaRow {
-    internal var
-      speed : int;
+    internal var speed : int;
   }
 }

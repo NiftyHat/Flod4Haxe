@@ -20,22 +20,22 @@ package neoart.flod.sidmon {
   import neoart.flod.core.*;
 
   public final class S2Player extends AmigaPlayer {
-    private var
-      tracks      : Vector.<S2Step>,
-      patterns    : Vector.<SMRow>,
-      instruments : Vector.<S2Instrument>,
-      samples     : Vector.<S2Sample>,
-      arpeggios   : Vector.<int>,
-      vibratos    : Vector.<int>,
-      waves       : Vector.<int>,
-      length      : int,
-      speedDef    : int,
-      voices      : Vector.<S2Voice>,
-      trackPos    : int,
-      patternPos  : int,
-      patternLen  : int,
-      arpeggioFx  : Vector.<int>,
-      arpeggioPos : int;
+    
+    private var tracks      : Vector.<S2Step>;
+    private var patterns    : Vector.<SMRow>;
+    private var instruments : Vector.<S2Instrument>;
+    private var samples     : Vector.<S2Sample>;
+    private var arpeggios   : Vector.<int>;
+    private var vibratos    : Vector.<int>;
+    private var waves       : Vector.<int>;
+    private var length      : int;
+    private var speedDef    : int;
+    private var voices      : Vector.<S2Voice>;
+    private var trackPos    : int;
+    private var patternPos  : int;
+    private var patternLen  : int;
+    private var arpeggioFx  : Vector.<int>;
+    private var arpeggioPos : int;
 
     public function S2Player(amiga:Amiga = null) {
       super(amiga);
@@ -199,8 +199,8 @@ package neoart.flod.sidmon {
             }
             break;
           case 2:   //sustain
-            if (voice.sustainCtr == instr.sustain) voice.adsrPos--;
-              else voice.sustainCtr++;
+            if (voice.sustainCtr == instr.sustain) {voice.adsrPos--;}
+              else {voice.sustainCtr++;}
             break;
           case 1:   //release
             voice.volume -= instr.releaseSpeed;
@@ -215,26 +215,26 @@ package neoart.flod.sidmon {
         if (instr.waveLen) {
           if (voice.waveCtr == instr.waveDelay) {
             voice.waveCtr = instr.waveDelay - instr.waveSpeed;
-            if (voice.wavePos == instr.waveLen) voice.wavePos = 0;
-              else voice.wavePos++;
+            if (voice.wavePos == instr.waveLen) {voice.wavePos = 0;}
+              else {voice.wavePos++;}
 
             voice.sample = sample = samples[waves[int(instr.wave + voice.wavePos)]];
             chan.pointer = sample.pointer;
             chan.length  = sample.length;
           } else
-            voice.waveCtr++;
+            {voice.waveCtr++;}
         }
 
         if (instr.arpeggioLen) {
           if (voice.arpeggioCtr == instr.arpeggioDelay) {
             voice.arpeggioCtr = instr.arpeggioDelay - instr.arpeggioSpeed;
-            if (voice.arpeggioPos == instr.arpeggioLen) voice.arpeggioPos = 0;
-              else voice.arpeggioPos++;
+            if (voice.arpeggioPos == instr.arpeggioLen) {voice.arpeggioPos = 0;}
+              else {voice.arpeggioPos++;}
 
             value = voice.original + arpeggios[int(instr.arpeggio + voice.arpeggioPos)];
             voice.period = PERIODS[value];
           } else
-            voice.arpeggioCtr++;
+            {voice.arpeggioCtr++;}
         }
         row = voice.row;
 
@@ -293,8 +293,8 @@ package neoart.flod.sidmon {
         if (instr.vibratoLen) {
           if (voice.vibratoCtr == instr.vibratoDelay) {
             voice.vibratoCtr = instr.vibratoDelay - instr.vibratoSpeed;
-            if (voice.vibratoPos == instr.vibratoLen) voice.vibratoPos = 0;
-              else voice.vibratoPos++;
+            if (voice.vibratoPos == instr.vibratoLen) {voice.vibratoPos = 0;}
+              else {voice.vibratoPos++;}
 
             voice.period += vibratos[int(instr.vibrato + voice.vibratoPos)];
           } else
@@ -329,8 +329,8 @@ package neoart.flod.sidmon {
 
         voice.period += voice.pitchBend;
 
-        if (voice.period < 95) voice.period = 95;
-          else if (voice.period > 5760) voice.period = 5760;
+        if (voice.period < 95) {voice.period = 95}
+          else if (voice.period > 5760) {voice.period = 5760}
 
         chan.period = voice.period;
         voice = voice.next;

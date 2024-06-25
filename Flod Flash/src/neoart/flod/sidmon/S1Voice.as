@@ -19,32 +19,32 @@ package neoart.flod.sidmon {
   import neoart.flod.core.*;
 
   public final class S1Voice {
-    internal var
-      index        : int,
-      next         : S1Voice,
-      channel      : AmigaChannel,
-      step         : int,
-      row          : int,
-      sample       : int,
-      samplePtr    : int,
-      sampleLen    : int,
-      note         : int,
-      noteTimer    : int,
-      period       : int,
-      volume       : int,
-      bendTo       : int,
-      bendSpeed    : int,
-      arpeggioCtr  : int,
-      envelopeCtr  : int,
-      pitchCtr     : int,
-      pitchFallCtr : int,
-      sustainCtr   : int,
-      phaseTimer   : int,
-      phaseSpeed   : int,
-      wavePos      : int,
-      waveList     : int,
-      waveTimer    : int,
-      waitCtr      : int;
+    
+    internal var index        : int;
+    internal var next         : S1Voice;
+    internal var channel      : AmigaChannel;
+    internal var step         : int;
+    internal var row          : int;
+    internal var sample       : int;
+    internal var samplePtr    : int;
+    internal var sampleLen    : int;
+    internal var note         : int;
+    internal var noteTimer    : int;
+    internal var period       : int;
+    internal var volume       : int;
+    internal var bendTo       : int;
+    internal var bendSpeed    : int;
+    internal var arpeggioCtr  : int;
+    internal var envelopeCtr  : int;
+    internal var pitchCtr     : int;
+    internal var pitchFallCtr : int;
+    internal var sustainCtr   : int;
+    internal var phaseTimer   : int;
+    internal var phaseSpeed   : int;
+    internal var wavePos      : int;
+    internal var waveList     : int;
+    internal var waveTimer    : int;
+    internal var waitCtr      : int;
 
     public function S1Voice(index:int) {
       this.index = index;

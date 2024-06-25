@@ -19,52 +19,52 @@ package neoart.flod.hippel {
   import neoart.flod.core.*;
 
   public final class JHVoice {
-    internal var
-      index       : int,
-      next        : JHVoice,
-      channel     : AmigaChannel,
-      enabled     : int,
-      cosoCounter : int,
-      cosoSpeed   : int,
-      trackPtr    : int,
-      trackPos    : int,
-      trackTransp : int,
-      patternPtr  : int,
-      patternPos  : int,
-      frqseqPtr   : int,
-      frqseqPos   : int,
-      volseqPtr   : int,
-      volseqPos   : int,
-      sample      : int,
-      loopPtr     : int,
-      repeat      : int,
-      tick        : int,
-      note        : int,
-      transpose   : int,
-      info        : int,
-      infoPrev    : int,
-      volume      : int,
-      volCounter  : int,
-      volSpeed    : int,
-      volSustain  : int,
-      volTransp   : int,
-      volFade     : int,
-      portaDelta  : int,
-      vibrato     : int,
-      vibDelay    : int,
-      vibDelta    : int,
-      vibDepth    : int,
-      vibSpeed    : int,
-      slide       : int,
-      sldActive   : int,
-      sldDone     : int,
-      sldCounter  : int,
-      sldSpeed    : int,
-      sldDelta    : int,
-      sldPointer  : int,
-      sldLen      : int,
-      sldEnd      : int,
-      sldLoopPtr  : int;
+    
+    internal var index       : int;
+    internal var next        : JHVoice;
+    internal var channel     : AmigaChannel;
+    internal var enabled     : int;
+    internal var cosoCounter : int;
+    internal var cosoSpeed   : int;
+    internal var trackPtr    : int;
+    internal var trackPos    : int;
+    internal var trackTransp : int;
+    internal var patternPtr  : int;
+    internal var patternPos  : int;
+    internal var frqseqPtr   : int;
+    internal var frqseqPos   : int;
+    internal var volseqPtr   : int;
+    internal var volseqPos   : int;
+    internal var sample      : int;
+    internal var loopPtr     : int;
+    internal var repeat      : int;
+    internal var tick        : int;
+    internal var note        : int;
+    internal var transpose   : int;
+    internal var info        : int;
+    internal var infoPrev    : int;
+    internal var volume      : int;
+    internal var volCounter  : int;
+    internal var volSpeed    : int;
+    internal var volSustain  : int;
+    internal var volTransp   : int;
+    internal var volFade     : int;
+    internal var portaDelta  : int;
+    internal var vibrato     : int;
+    internal var vibDelay    : int;
+    internal var vibDelta    : int;
+    internal var vibDepth    : int;
+    internal var vibSpeed    : int;
+    internal var slide       : int;
+    internal var sldActive   : int;
+    internal var sldDone     : int;
+    internal var sldCounter  : int;
+    internal var sldSpeed    : int;
+    internal var sldDelta    : int;
+    internal var sldPointer  : int;
+    internal var sldLen      : int;
+    internal var sldEnd      : int;
+    internal var sldLoopPtr  : int;
 
     public function JHVoice(index:int) {
       this.index = index;
@@ -75,7 +75,7 @@ package neoart.flod.hippel {
       enabled     = 0;
       cosoCounter = 0;
       cosoSpeed   = 0;
-      trackPtr    = 0
+      trackPtr    = 0;
       trackPos    = 12;
       trackTransp = 0;
       patternPtr  = 0;

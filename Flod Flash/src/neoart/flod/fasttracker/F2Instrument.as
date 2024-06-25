@@ -18,19 +18,19 @@
 package neoart.flod.fasttracker {
 
   public final class F2Instrument {
-    internal var
-      name         : String = "",
-      samples      : Vector.<F2Sample>,
-      noteSamples  : Vector.<int>,
-      fadeout      : int,
-      volData      : F2Data,
-      volEnabled   : int,
-      panData      : F2Data,
-      panEnabled   : int,
-      vibratoType  : int,
-      vibratoSweep : int,
-      vibratoSpeed : int,
-      vibratoDepth : int;
+    
+    internal var name         : String = "";
+    internal var samples      : Vector.<F2Sample>;
+    internal var noteSamples  : Vector.<int>;
+    internal var fadeout      : int;
+    internal var volData      : F2Data;
+    internal var volEnabled   : int;
+    internal var panData      : F2Data;
+    internal var panEnabled   : int;
+    internal var vibratoType  : int;
+    internal var vibratoSweep : int;
+    internal var vibratoSpeed : int;
+    internal var vibratoDepth : int;
 
     public function F2Instrument() {
       noteSamples = new Vector.<int>(96, true);

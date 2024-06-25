@@ -19,24 +19,24 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class HMVoice {
-    internal var
-      index        : int,
-      next         : HMVoice,
-      channel      : AmigaChannel,
-      sample       : HMSample,
-      enabled      : int,
-      period       : int,
-      effect       : int,
-      param        : int,
-      volume1      : int,
-      volume2      : int,
-      handler      : int,
-      portaDir     : int,
-      portaPeriod  : int,
-      portaSpeed   : int,
-      vibratoPos   : int,
-      vibratoSpeed : int,
-      wavePos      : int;
+    
+    internal var index        : int;
+    internal var next         : HMVoice;
+    internal var channel      : AmigaChannel;
+    internal var sample       : HMSample;
+    internal var enabled      : int;
+    internal var period       : int;
+    internal var effect       : int;
+    internal var param        : int;
+    internal var volume1      : int;
+    internal var volume2      : int;
+    internal var handler      : int;
+    internal var portaDir     : int;
+    internal var portaPeriod  : int;
+    internal var portaSpeed   : int;
+    internal var vibratoPos   : int;
+    internal var vibratoSpeed : int;
+    internal var wavePos      : int;
 
     public function HMVoice(index:int) {
       this.index = index;

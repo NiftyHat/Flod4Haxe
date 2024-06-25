@@ -18,37 +18,37 @@
 package neoart.flod.fred {
 
   public final class FESample {
-    internal var
-      pointer       : int,
-      loopPtr       : int,
-      length        : int,
-      relative      : int,
-      type          : int,
-      synchro       : int,
-      envelopeVol   : int,
-      attackSpeed   : int,
-      attackVol     : int,
-      decaySpeed    : int,
-      decayVol      : int,
-      sustainTime   : int,
-      releaseSpeed  : int,
-      releaseVol    : int,
-      arpeggio      : Vector.<int>,
-      arpeggioLimit : int,
-      arpeggioSpeed : int,
-      vibratoDelay  : int,
-      vibratoDepth  : int,
-      vibratoSpeed  : int,
-      pulseCounter  : int,
-      pulseDelay    : int,
-      pulsePosL     : int,
-      pulsePosH     : int,
-      pulseSpeed    : int,
-      pulseRateNeg  : int,
-      pulseRatePos  : int,
-      blendCounter  : int,
-      blendDelay    : int,
-      blendRate     : int;
+    
+    internal var pointer       : int;
+    internal var loopPtr       : int;
+    internal var length        : int;
+    internal var relative      : int;
+    internal var type          : int;
+    internal var synchro       : int;
+    internal var envelopeVol   : int;
+    internal var attackSpeed   : int;
+    internal var attackVol     : int;
+    internal var decaySpeed    : int;
+    internal var decayVol      : int;
+    internal var sustainTime   : int;
+    internal var releaseSpeed  : int;
+    internal var releaseVol    : int;
+    internal var arpeggio      : Vector.<int>;
+    internal var arpeggioLimit : int;
+    internal var arpeggioSpeed : int;
+    internal var vibratoDelay  : int;
+    internal var vibratoDepth  : int;
+    internal var vibratoSpeed  : int;
+    internal var pulseCounter  : int;
+    internal var pulseDelay    : int;
+    internal var pulsePosL     : int;
+    internal var pulsePosH     : int;
+    internal var pulseSpeed    : int;
+    internal var pulseRateNeg  : int;
+    internal var pulseRatePos  : int;
+    internal var blendCounter  : int;
+    internal var blendDelay    : int;
+    internal var blendRate     : int;
 
     public function FESample() {
       arpeggio = new Vector.<int>(16, true);

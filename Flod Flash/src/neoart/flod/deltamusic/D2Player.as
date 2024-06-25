@@ -20,14 +20,14 @@ package neoart.flod.deltamusic {
   import neoart.flod.core.*;
 
   public final class D2Player extends AmigaPlayer {
-    private var
-      tracks    : Vector.<AmigaStep>,
-      patterns  : Vector.<AmigaRow>,
-      samples   : Vector.<D2Sample>,
-      data      : Vector.<int>,
-      arpeggios : Vector.<int>,
-      voices    : Vector.<D2Voice>,
-      noise     : uint;
+    
+    private var tracks    : Vector.<AmigaStep>;
+    private var patterns  : Vector.<AmigaRow>;
+    private var samples   : Vector.<D2Sample>;
+    private var data      : Vector.<int>;
+    private var arpeggios : Vector.<int>;
+    private var voices    : Vector.<D2Voice>;
+    private var noise     : uint;
 
     public function D2Player(amiga:Amiga = null) {
       super(amiga);
@@ -173,8 +173,12 @@ package neoart.flod.deltamusic {
         }
         value = sample.vibratos[voice.vibratoPos];
 
-        if (voice.vibratoDir) voice.vibratoPeriod -= value;
-          else voice.vibratoPeriod += value;
+        if (voice.vibratoDir) {
+			voice.vibratoPeriod -= value;
+		}
+          else {
+			  voice.vibratoPeriod += value;
+		  }
 
         if (--voice.vibratoCtr == 0) {
           voice.vibratoCtr = sample.vibratos[int(voice.vibratoPos + 1)];

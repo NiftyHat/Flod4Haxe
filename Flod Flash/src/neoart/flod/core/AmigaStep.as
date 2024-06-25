@@ -18,8 +18,8 @@
 package neoart.flod.core {
 
   public class AmigaStep {
-    public var
-      pattern   : int,
-      transpose : int;
+    
+    public var pattern   : int;
+    public var transpose : int;
   }
 }

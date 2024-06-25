@@ -18,8 +18,8 @@
 package neoart.flod.hubbard {
 
   public final class RHSong {
-    internal var
-      speed  : int,
-      tracks : Vector.<int>;
+    
+    internal var speed  : int;
+    internal var tracks : Vector.<int>;
   }
 }

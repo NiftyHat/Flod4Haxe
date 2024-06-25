@@ -19,22 +19,22 @@ package neoart.flod.digitalmugician {
   import neoart.flod.core.*;
 
   public final class DMSample extends AmigaSample {
-    internal var
-      wave        : int,
-      waveLen     : int,
-      finetune    : int,
-      arpeggio    : int,
-      pitch       : int,
-      pitchDelay  : int,
-      pitchLoop   : int,
-      pitchSpeed  : int,
-      effect      : int,
-      effectDone  : int,
-      effectStep  : int,
-      effectSpeed : int,
-      source1     : int,
-      source2     : int,
-      volumeLoop  : int,
-      volumeSpeed : int;
+    
+    internal var wave        : int;
+    internal var waveLen     : int;
+    internal var finetune    : int;
+    internal var arpeggio    : int;
+    internal var pitch       : int;
+    internal var pitchDelay  : int;
+    internal var pitchLoop   : int;
+    internal var pitchSpeed  : int;
+    internal var effect      : int;
+    internal var effectDone  : int;
+    internal var effectStep  : int;
+    internal var effectSpeed : int;
+    internal var source1     : int;
+    internal var source2     : int;
+    internal var volumeLoop  : int;
+    internal var volumeSpeed : int;
   }
 }

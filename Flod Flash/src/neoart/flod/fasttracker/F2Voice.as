@@ -19,66 +19,66 @@ package neoart.flod.fasttracker {
   import neoart.flod.core.*;
 
   public final class F2Voice {
-    internal var
-      index          : int,
-      next           : F2Voice,
-      flags          : int,
-      delay          : int,
-      channel        : SBChannel,
-      patternLoop    : int,
-      patternLoopRow : int,
-      playing        : F2Instrument,
-      note           : int,
-      keyoff         : int,
-      period         : int,
-      finetune       : int,
-      arpDelta       : int,
-      vibDelta       : int,
-      instrument     : F2Instrument,
-      autoVibratoPos : int,
-      autoSweep      : int,
-      autoSweepPos   : int,
-      sample         : F2Sample,
-      sampleOffset   : int,
-      volume         : int,
-      volEnabled     : int,
-      volEnvelope    : F2Envelope,
-      volDelta       : int,
-      volSlide       : int,
-      volSlideMaster : int,
-      fineSlideU     : int,
-      fineSlideD     : int,
-      fadeEnabled    : int,
-      fadeDelta      : int,
-      fadeVolume     : int,
-      panning        : int,
-      panEnabled     : int,
-      panEnvelope    : F2Envelope,
-      panSlide       : int,
-      portaU         : int,
-      portaD         : int,
-      finePortaU     : int,
-      finePortaD     : int,
-      xtraPortaU     : int,
-      xtraPortaD     : int,
-      portaPeriod    : int,
-      portaSpeed     : int,
-      glissando      : int,
-      glissPeriod    : int,
-      vibratoPos     : int,
-      vibratoSpeed   : int,
-      vibratoDepth   : int,
-      vibratoReset   : int,
-      tremoloPos     : int,
-      tremoloSpeed   : int,
-      tremoloDepth   : int,
-      waveControl    : int,
-      tremorPos      : int,
-      tremorOn       : int,
-      tremorOff      : int,
-      tremorVolume   : int,
-      retrigx        : int,
-      retrigy        : int;
+    
+    internal var index          : int;
+    internal var next           : F2Voice;
+    internal var flags          : int;
+    internal var delay          : int;
+    internal var channel        : SBChannel;
+    internal var patternLoop    : int;
+    internal var patternLoopRow : int;
+    internal var playing        : F2Instrument;
+    internal var note           : int;
+    internal var keyoff         : int;
+    internal var period         : int;
+    internal var finetune       : int;
+    internal var arpDelta       : int;
+    internal var vibDelta       : int;
+    internal var instrument     : F2Instrument;
+    internal var autoVibratoPos : int;
+    internal var autoSweep      : int;
+    internal var autoSweepPos   : int;
+    internal var sample         : F2Sample;
+    internal var sampleOffset   : int;
+    internal var volume         : int;
+    internal var volEnabled     : int;
+    internal var volEnvelope    : F2Envelope;
+    internal var volDelta       : int;
+    internal var volSlide       : int;
+    internal var volSlideMaster : int;
+    internal var fineSlideU     : int;
+    internal var fineSlideD     : int;
+    internal var fadeEnabled    : int;
+    internal var fadeDelta      : int;
+    internal var fadeVolume     : int;
+    internal var panning        : int;
+    internal var panEnabled     : int;
+    internal var panEnvelope    : F2Envelope;
+    internal var panSlide       : int;
+    internal var portaU         : int;
+    internal var portaD         : int;
+    internal var finePortaU     : int;
+    internal var finePortaD     : int;
+    internal var xtraPortaU     : int;
+    internal var xtraPortaD     : int;
+    internal var portaPeriod    : int;
+    internal var portaSpeed     : int;
+    internal var glissando      : int;
+    internal var glissPeriod    : int;
+    internal var vibratoPos     : int;
+    internal var vibratoSpeed   : int;
+    internal var vibratoDepth   : int;
+    internal var vibratoReset   : int;
+    internal var tremoloPos     : int;
+    internal var tremoloSpeed   : int;
+    internal var tremoloDepth   : int;
+    internal var waveControl    : int;
+    internal var tremorPos      : int;
+    internal var tremorOn       : int;
+    internal var tremorOff      : int;
+    internal var tremorVolume   : int;
+    internal var retrigx        : int;
+    internal var retrigy        : int;
 
     public function F2Voice(index:int) {
       this.index = index;
@@ -118,8 +118,12 @@ package neoart.flod.fasttracker {
           delta = AUTOVIBRATO[autoVibratoPos];
           break;
         case 1:
-          if (autoVibratoPos < 128) delta = -64;
-            else delta = 64;
+          if (autoVibratoPos < 128) {
+			  delta = -64;
+		  }
+            else {
+				delta = 64;
+		  }
           break;
         case 2:
           delta = ((64 + (autoVibratoPos >> 1)) & 127) - 64;
@@ -154,8 +158,12 @@ package neoart.flod.fasttracker {
       if (period < portaPeriod) {
         glissPeriod += portaSpeed << 2;
 
-        if (!glissando) period = glissPeriod;
-          else period = Math.round(glissPeriod / 64) << 6;
+        if (!glissando) {
+			period = glissPeriod;
+		}
+          else {
+			  period = Math.round(glissPeriod / 64) << 6;
+		  }
 
         if (period >= portaPeriod) {
           period = portaPeriod;
@@ -164,8 +172,8 @@ package neoart.flod.fasttracker {
       } else if (period > portaPeriod) {
         glissPeriod -= portaSpeed << 2;
 
-        if (!glissando) period = glissPeriod;
-          else period = Math.round(glissPeriod / 64) << 6;
+        if (!glissando) {period = glissPeriod;}
+          else{ period = Math.round(glissPeriod / 64) << 6;}
 
         if (period <= portaPeriod) {
           period = portaPeriod;
@@ -229,8 +237,8 @@ package neoart.flod.fasttracker {
       flags |= F2Player.UPDATE_PERIOD;
     }
 
-    private static const
-      AUTOVIBRATO : Vector.<int> = Vector.<int>([
+    
+    private static const AUTOVIBRATO : Vector.<int> = Vector.<int>([
           0, -2, -3, -5, -6, -8, -9,-11,-12,-14,-16,-17,-19,-20,-22,-23,
         -24,-26,-27,-29,-30,-32,-33,-34,-36,-37,-38,-39,-41,-42,-43,-44,
         -45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-56,-57,-58,-59,
@@ -246,9 +254,9 @@ package neoart.flod.fasttracker {
          64, 64, 64, 64, 64, 64, 63, 63, 63, 62, 62, 62, 61, 61, 60, 60,
          59, 59, 58, 57, 56, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46,
          45, 44, 43, 42, 41, 39, 38, 37, 36, 34, 33, 32, 30, 29, 27, 26,
-         24, 23, 22, 20, 19, 17, 16, 14, 12, 11,  9,  8,  6,  5,  3,  2]),
+         24, 23, 22, 20, 19, 17, 16, 14, 12, 11,  9,  8,  6,  5,  3,  2]);
 
-      VIBRATO : Vector.<int> = Vector.<int>([
+    private static const VIBRATO : Vector.<int> = Vector.<int>([
           0, 24, 49, 74, 97,120,141,161,180,197,212,224,235,244,250,253,
         255,253,250,244,235,224,212,197,180,161,141,120, 97, 74, 49, 24]);
   }

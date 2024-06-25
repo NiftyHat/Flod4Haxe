@@ -19,41 +19,41 @@ package neoart.flod.futurecomposer {
   import neoart.flod.core.*;
 
   public final class FCVoice {
-    internal var
-      index          : int,
-      next           : FCVoice,
-      channel        : AmigaChannel,
-      sample         : AmigaSample,
-      enabled        : int,
-      pattern        : int,
-      soundTranspose : int,
-      transpose      : int,
-      patStep        : int,
-      frqStep        : int,
-      frqPos         : int,
-      frqSustain     : int,
-      frqTranspose   : int,
-      volStep        : int,
-      volPos         : int,
-      volCtr         : int,
-      volSpeed       : int,
-      volSustain     : int,
-      note           : int,
-      pitch          : int,
-      volume         : int,
-      pitchBendFlag  : int,
-      pitchBendSpeed : int,
-      pitchBendTime  : int,
-      portamentoFlag : int,
-      portamento     : int,
-      volBendFlag    : int,
-      volBendSpeed   : int,
-      volBendTime    : int,
-      vibratoFlag    : int,
-      vibratoSpeed   : int,
-      vibratoDepth   : int,
-      vibratoDelay   : int,
-      vibrato        : int;
+    
+    internal var index          : int;
+    internal var next           : FCVoice;
+    internal var channel        : AmigaChannel;
+    internal var sample         : AmigaSample;
+    internal var enabled        : int;
+    internal var pattern        : int;
+    internal var soundTranspose : int;
+    internal var transpose      : int;
+    internal var patStep        : int;
+    internal var frqStep        : int;
+    internal var frqPos         : int;
+    internal var frqSustain     : int;
+    internal var frqTranspose   : int;
+    internal var volStep        : int;
+    internal var volPos         : int;
+    internal var volCtr         : int;
+    internal var volSpeed       : int;
+    internal var volSustain     : int;
+    internal var note           : int;
+    internal var pitch          : int;
+    internal var volume         : int;
+    internal var pitchBendFlag  : int;
+    internal var pitchBendSpeed : int;
+    internal var pitchBendTime  : int;
+    internal var portamentoFlag : int;
+    internal var portamento     : int;
+    internal var volBendFlag    : int;
+    internal var volBendSpeed   : int;
+    internal var volBendTime    : int;
+    internal var vibratoFlag    : int;
+    internal var vibratoSpeed   : int;
+    internal var vibratoDepth   : int;
+    internal var vibratoDelay   : int;
+    internal var vibrato        : int;
 
     public function FCVoice(index:int) {
       this.index = index;

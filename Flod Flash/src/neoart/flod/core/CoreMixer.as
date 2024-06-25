@@ -20,15 +20,15 @@ package neoart.flod.core {
   import flash.utils.*;
 
   public class CoreMixer {
-    public var
-      player      : CorePlayer,
-      samplesTick : int;
-    protected var
-      buffer      : Vector.<Sample>,
-      samplesLeft : int,
-      remains     : int,
-      completed   : int,
-      wave        : ByteArray;
+    
+    public var player      : CorePlayer;
+    public var samplesTick : int;
+    
+    protected var buffer      : Vector.<Sample>;
+    protected var samplesLeft : int;
+    protected var remains     : int;
+    protected var completed   : int;
+    protected var wave        : ByteArray;
 
     public function CoreMixer() {
       wave = new ByteArray();

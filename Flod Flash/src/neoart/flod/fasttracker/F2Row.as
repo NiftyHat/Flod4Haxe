@@ -18,11 +18,11 @@
 package neoart.flod.fasttracker {
 
   public final class F2Row {
-    internal var
-      note       : int,
-      instrument : int,
-      volume     : int,
-      effect     : int,
-      param      : int;
+    
+    internal var note       : int;
+    internal var instrument : int;
+    internal var volume     : int;
+    internal var effect     : int;
+    internal var param      : int;
   }
 }

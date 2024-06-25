@@ -17,18 +17,17 @@ package neoart.flip {
   import flash.utils.*;
 
   public final class Inflater {
-    internal var
-      output   : ByteArray;
-    private var
-      inpbuf   : ByteArray,
-      inpcnt   : int,
-      outcnt   : int,
-      bitbuf   : int,
-      bitcnt   : int,
-      flencode : Huffman,
-      fdiscode : Huffman,
-      dlencode : Huffman,
-      ddiscode : Huffman;
+    internal var  output   : ByteArray;
+	
+    private var  inpbuf   : ByteArray;
+    private var  inpcnt   : int;
+    private var  outcnt   : int;
+    private var  bitbuf   : int;
+    private var  bitcnt   : int;
+    private var   flencode : Huffman;
+    private var  fdiscode : Huffman;
+    private var  dlencode : Huffman;
+    private var ddiscode : Huffman;
 
     public function Inflater() {
       initialize();
@@ -230,23 +229,23 @@ package neoart.flip {
       return codes(dlencode, ddiscode);
     }
 
-    private static const
-      ERROR1   : String = "Invalid block type.",
-      ERROR2   : String = "Available inflate data did not terminate.",
-      ERROR3   : String = "Invalid literal/length or distance code.",
-      ERROR4   : String = "Distance is too far back.",
-      ERROR5   : String = "Stored block length did not match one's complement.",
-      ERROR6   : String = "Too many length or distance codes.",
-      ERROR7   : String = "Code lengths codes incomplete.",
-      ERROR8   : String = "Repeat lengths with no first length.",
-      ERROR9   : String = "Repeat more than specified lengths.",
-      ERROR10  : String = "Invalid literal/length code lengths.",
-      ERROR11  : String = "Invalid distance code lengths.",
+    
+     private static const ERROR1   : String = "Invalid block type.";
+     private static const ERROR2   : String = "Available inflate data did not terminate.";
+     private static const ERROR3   : String = "Invalid literal/length or distance code.";
+     private static const ERROR4   : String = "Distance is too far back.";
+     private static const ERROR5   : String = "Stored block length did not match one's complement.";
+     private static const ERROR6   : String = "Too many length or distance codes.";
+     private static const ERROR7   : String = "Code lengths codes incomplete.";
+     private static const ERROR8   : String = "Repeat lengths with no first length.";
+     private static const ERROR9   : String = "Repeat more than specified lengths.";
+     private static const ERROR10  : String = "Invalid literal/length code lengths.";
+     private static const ERROR11  : String = "Invalid distance code lengths.";
 
-      LENG  : Vector.<int> = Vector.<int>([3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258]),
-      LEXT  : Vector.<int> = Vector.<int>([0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0]),
-      DIST  : Vector.<int> = Vector.<int>([1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577]),
-      DEXT  : Vector.<int> = Vector.<int>([0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13]),
-      ORDER : Vector.<int> = Vector.<int>([16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15]);
+     private static const LENG  : Vector.<int> = Vector.<int>([3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258]);
+     private static const LEXT  : Vector.<int> = Vector.<int>([0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0]);
+     private static const DIST  : Vector.<int> = Vector.<int>([1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577]);
+     private static const DEXT  : Vector.<int> = Vector.<int>([0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13]);
+     private static const ORDER : Vector.<int> = Vector.<int>([16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15]);
   }
 }

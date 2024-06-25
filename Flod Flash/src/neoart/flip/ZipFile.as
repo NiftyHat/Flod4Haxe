@@ -126,10 +126,9 @@ package neoart.flip {
       parseCentral();
     }
 
-    private static const
-      ERROR1 : String = "The archive is either in unknown format or damaged.",
-      ERROR2 : String = "Unexpected end of archive.",
-      ERROR3 : String = "Encrypted archive not supported.",
-      ERROR4 : String = "Compression method not supported.";
+    private static const ERROR1 : String = "The archive is either in unknown format or damaged.";
+    private static const ERROR2 : String = "Unexpected end of archive.";
+    private static const ERROR3 : String = "Encrypted archive not supported.";
+    private static const ERROR4 : String = "Compression method not supported.";
   }
 }

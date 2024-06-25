@@ -20,20 +20,20 @@ package neoart.flod.hippel {
   import neoart.flod.core.*;
 
   public final class JHPlayer extends AmigaPlayer {
-    private var
-      songs       : Vector.<JHSong>,
-      samples     : Vector.<AmigaSample>,
-      stream      : ByteArray,
-      base        : int,
-      patterns    : int,
-      patternLen  : int,
-      periods     : int,
-      frqseqs     : int,
-      volseqs     : int,
-      samplesData : int,
-      song        : JHSong,
-      voices      : Vector.<JHVoice>,
-      coso        : int;
+    
+    private var songs       : Vector.<JHSong>;
+    private var samples     : Vector.<AmigaSample>;
+    private var stream      : ByteArray;
+    private var base        : int;
+    private var patterns    : int;
+    private var patternLen  : int;
+    private var  periods     : int;
+    private var  frqseqs     : int;
+    private var  volseqs     : int;
+    private var samplesData : int;
+    private var song        : JHSong;
+    private var voices      : Vector.<JHVoice>;
+    private var coso        : int;
 
     public function JHPlayer(amiga:Amiga = null) {
       super(amiga);

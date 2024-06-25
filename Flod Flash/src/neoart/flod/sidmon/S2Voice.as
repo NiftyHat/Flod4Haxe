@@ -19,34 +19,34 @@ package neoart.flod.sidmon {
   import neoart.flod.core.*;
 
   public final class S2Voice {
-    internal var
-      index          : int,
-      next           : S2Voice,
-      channel        : AmigaChannel,
-      step           : S2Step,
-      row            : SMRow,
-      instr          : S2Instrument,
-      sample         : S2Sample,
-      enabled        : int,
-      pattern        : int,
-      instrument     : int,
-      note           : int,
-      period         : int,
-      volume         : int,
-      original       : int,
-      adsrPos        : int,
-      sustainCtr     : int,
-      pitchBend      : int,
-      pitchBendCtr   : int,
-      noteSlideTo    : int,
-      noteSlideSpeed : int,
-      waveCtr        : int,
-      wavePos        : int,
-      arpeggioCtr    : int,
-      arpeggioPos    : int,
-      vibratoCtr     : int,
-      vibratoPos     : int,
-      speed          : int;
+    
+    internal var index          : int;
+    internal var next           : S2Voice;
+    internal var channel        : AmigaChannel;
+    internal var step           : S2Step;
+    internal var row            : SMRow;
+    internal var instr          : S2Instrument;
+    internal var sample         : S2Sample;
+    internal var enabled        : int;
+    internal var pattern        : int;
+    internal var instrument     : int;
+    internal var note           : int;
+    internal var period         : int;
+    internal var volume         : int;
+    internal var original       : int;
+    internal var adsrPos        : int;
+    internal var sustainCtr     : int;
+    internal var pitchBend      : int;
+    internal var pitchBendCtr   : int;
+    internal var noteSlideTo    : int;
+    internal var noteSlideSpeed : int;
+    internal var waveCtr        : int;
+    internal var wavePos        : int;
+    internal var arpeggioCtr    : int;
+    internal var arpeggioPos    : int;
+    internal var vibratoCtr     : int;
+    internal var vibratoPos     : int;
+    internal var speed          : int;
 
     public function S2Voice(index:int) {
       this.index = index;

@@ -20,19 +20,19 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class PTPlayer extends AmigaPlayer {
-    private var
-      track        : Vector.<int>,
-      patterns     : Vector.<PTRow>,
-      samples      : Vector.<PTSample>,
-      length       : int,
-      voices       : Vector.<PTVoice>,
-      trackPos     : int,
-      patternPos   : int,
-      patternBreak : int,
-      patternDelay : int,
-      breakPos     : int,
-      jumpFlag     : int,
-      vibratoDepth : int;
+    
+    private var track        : Vector.<int>;
+    private var patterns     : Vector.<PTRow>;
+    private var samples      : Vector.<PTSample>;
+    private var length       : int;
+    private var voices       : Vector.<PTVoice>;
+    private var trackPos     : int;
+    private var patternPos   : int;
+    private var patternBreak : int;
+    private var patternDelay : int;
+    private var breakPos     : int;
+    private var jumpFlag     : int;
+    private var vibratoDepth : int;
 
     public function PTPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -52,14 +52,14 @@ package neoart.flod.trackers {
 
     override public function set force(value:int):void {
       if (value < PROTRACKER_10)
-        value = PROTRACKER_10;
+        {value = PROTRACKER_10;}
       else if (value > PROTRACKER_12)
-        value = PROTRACKER_12;
+       { value = PROTRACKER_12;}
 
       version = value;
 
-      if (value < PROTRACKER_11) vibratoDepth = 6;
-        else vibratoDepth = 7;
+      if (value < PROTRACKER_11) {vibratoDepth = 6;}
+        else {vibratoDepth = 7;}
     }
 
     override public function process():void {
@@ -338,8 +338,8 @@ package neoart.flod.trackers {
               continue;
             }
 
-            if (value == 1) value = voice.param >> 4;
-              else value = voice.param & 0x0f;
+            if (value == 1) {value = voice.param >> 4;}
+              else {value = voice.param & 0x0f;}
 
             i = voice.finetune;
             position = i + 37;
@@ -419,8 +419,8 @@ package neoart.flod.trackers {
               position <<= 3;
 
               if (wave == 1) {
-                if (voice.vibratoPos > 127) value -= position;
-                  else value = position;
+                if (voice.vibratoPos > 127) {value -= position;}
+                  else {value = position;}
               }
             } else {
               value = VIBRATO[position];
@@ -428,8 +428,8 @@ package neoart.flod.trackers {
 
             value = ((voice.vibratoParam & 0x0f) * value) >> vibratoDepth;
 
-            if (voice.vibratoPos > 127) chan.period = voice.period - value;
-              else chan.period = voice.period + value;
+            if (voice.vibratoPos > 127) {chan.period = voice.period - value;}
+              else {chan.period = voice.period + value;}
 
             value = (voice.vibratoParam >> 2) & 60;
             voice.vibratoPos = (voice.vibratoPos + value) & 255;
@@ -452,8 +452,8 @@ package neoart.flod.trackers {
               position <<= 3;
 
               if (wave == 1) {
-                if (voice.tremoloPos > 127) value -= position;
-                  else value = position;
+                if (voice.tremoloPos > 127) {value -= position;}
+                  else {value = position;}
               }
             } else {
               value = VIBRATO[position];
@@ -461,8 +461,8 @@ package neoart.flod.trackers {
 
             value = ((voice.tremoloParam & 0x0f) * value) >> 6;
 
-            if (voice.tremoloPos > 127) chan.volume = voice.volume - value;
-              else chan.volume = voice.volume + value;
+            if (voice.tremoloPos > 127) {chan.volume = voice.volume - value;}
+              else{ chan.volume = voice.volume + value;}
 
             value = (voice.tremoloParam >> 2) & 60;
             voice.tremoloPos = (voice.tremoloPos + value) & 255;
@@ -479,11 +479,11 @@ package neoart.flod.trackers {
           slide = 0;
           value = voice.param >> 4;
 
-          if (value) voice.volume += value;
-            else voice.volume -= voice.param & 0x0f;
+          if (value) {voice.volume += value;}
+            else {voice.volume -= voice.param & 0x0f;}
 
-          if (voice.volume < 0) voice.volume = 0;
-            else if (voice.volume > 64) voice.volume = 64;
+          if (voice.volume < 0) {voice.volume = 0;}
+            else if (voice.volume > 64) {voice.volume = 64;}
 
           chan.volume = voice.volume;
         }
@@ -520,8 +520,8 @@ package neoart.flod.trackers {
         case 13:  //pattern break
           breakPos = ((voice.param >> 4) * 10) + (voice.param & 0x0f);
 
-          if (breakPos > 63) breakPos = 0;
-            else breakPos <<= 2;
+          if (breakPos > 63) {breakPos = 0;}
+            else {breakPos <<= 2;}
 
           jumpFlag = 1;
           break;
@@ -531,8 +531,8 @@ package neoart.flod.trackers {
         case 15:  //set speed
           if (!voice.param) return;
 
-          if (voice.param < 32) speed = voice.param;
-            else amiga.samplesTick = 110250 / voice.param;
+          if (voice.param < 32) {speed = voice.param;}
+            else {amiga.samplesTick = 110250 / voice.param;}
 
           tick = 0;
           break;
@@ -571,8 +571,8 @@ package neoart.flod.trackers {
           if (tick) return;
 
           if (param) {
-            if (voice.loopCtr) voice.loopCtr--;
-              else voice.loopCtr = param;
+            if (voice.loopCtr) {voice.loopCtr--;}
+              else {voice.loopCtr = param;}
 
             if (voice.loopCtr) {
               breakPos = voice.loopPos << 2;
@@ -674,13 +674,13 @@ package neoart.flod.trackers {
       }
     }
 
-    public static const
-      PROTRACKER_10 : int = 1,
-      PROTRACKER_11 : int = 2,
-      PROTRACKER_12 : int = 3;
+    
+    public static const PROTRACKER_10 : int = 1;
+    public static const PROTRACKER_11 : int = 2;
+    public static const PROTRACKER_12 : int = 3;
 
-    private const
-      PERIODS : Vector.<int> = Vector.<int>([
+    
+    private const PERIODS : Vector.<int> = Vector.<int>([
         856,808,762,720,678,640,604,570,538,508,480,453,
         428,404,381,360,339,320,302,285,269,254,240,226,
         214,202,190,180,170,160,151,143,135,127,120,113,0,
@@ -728,14 +728,14 @@ package neoart.flod.trackers {
         217,205,193,183,172,163,154,145,137,129,122,115,0,
         862,814,768,725,684,646,610,575,543,513,484,457,
         431,407,384,363,342,323,305,288,272,256,242,228,
-        216,203,192,181,171,161,152,144,136,128,121,114,0]),
+        216, 203, 192, 181, 171, 161, 152, 144, 136, 128, 121, 114, 0]);
 
-      VIBRATO: Vector.<int> = Vector.<int>([
+    private const VIBRATO: Vector.<int> = Vector.<int>([
           0, 24, 49, 74, 97,120,141,161,180,197,212,224,
         235,244,250,253,255,253,250,244,235,224,212,197,
-        180,161,141,120, 97, 74, 49, 24]),
+        180, 161, 141, 120, 97, 74, 49, 24]);
 
-      FUNKREP: Vector.<int> = Vector.<int>([
+    private const FUNKREP: Vector.<int> = Vector.<int>([
         0,5,6,7,8,10,11,13,16,19,22,26,32,43,64,128]);
   }
 }

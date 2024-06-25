@@ -19,21 +19,21 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class MKVoice {
-    internal var
-      index        : int,
-      next         : MKVoice,
-      channel      : AmigaChannel,
-      sample       : AmigaSample,
-      enabled      : int,
-      period       : int,
-      effect       : int,
-      param        : int,
-      volume       : int,
-      portaDir     : int,
-      portaPeriod  : int,
-      portaSpeed   : int,
-      vibratoPos   : int,
-      vibratoSpeed : int;
+    
+    internal var index        : int;
+    internal var next         : MKVoice;
+    internal var channel      : AmigaChannel;
+    internal var sample       : AmigaSample;
+    internal var enabled      : int;
+    internal var period       : int;
+    internal var effect       : int;
+    internal var param        : int;
+    internal var volume       : int;
+    internal var portaDir     : int;
+    internal var portaPeriod  : int;
+    internal var portaSpeed   : int;
+    internal var vibratoPos   : int;
+    internal var vibratoSpeed : int;
 
     public function MKVoice(index:int) {
       this.index = index;

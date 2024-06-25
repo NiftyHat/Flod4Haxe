@@ -19,27 +19,27 @@ package neoart.flod.sidmon {
   import neoart.flod.core.*;
 
   public final class S2Instrument {
-    internal var
-      wave           : int,
-      waveLen        : int,
-      waveDelay      : int,
-      waveSpeed      : int,
-      arpeggio       : int,
-      arpeggioLen    : int,
-      arpeggioDelay  : int,
-      arpeggioSpeed  : int,
-      vibrato        : int,
-      vibratoLen     : int,
-      vibratoDelay   : int,
-      vibratoSpeed   : int,
-      pitchBend      : int,
-      pitchBendDelay : int,
-      attackMax      : int,
-      attackSpeed    : int,
-      decayMin       : int,
-      decaySpeed     : int,
-      sustain        : int,
-      releaseMin     : int,
-      releaseSpeed   : int;
+    
+    internal var wave           : int;
+    internal var waveLen        : int;
+    internal var waveDelay      : int;
+    internal var waveSpeed      : int;
+    internal var arpeggio       : int;
+    internal var arpeggioLen    : int;
+    internal var arpeggioDelay  : int;
+    internal var arpeggioSpeed  : int;
+    internal var vibrato        : int;
+    internal var vibratoLen     : int;
+    internal var vibratoDelay   : int;
+    internal var vibratoSpeed   : int;
+    internal var pitchBend      : int;
+    internal var pitchBendDelay : int;
+    internal var attackMax      : int;
+    internal var attackSpeed    : int;
+    internal var decayMin       : int;
+    internal var decaySpeed     : int;
+    internal var sustain        : int;
+    internal var releaseMin     : int;
+    internal var releaseSpeed   : int;
   }
 }
