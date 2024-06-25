@@ -1,5 +1,5 @@
 Flod          version 4.1
-Flod Haxe     version 1.0
+Flod JS       version 2.1
 Flip          version 1.2
 
    2012/04/30
