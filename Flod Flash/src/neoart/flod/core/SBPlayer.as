@@ -18,14 +18,14 @@
 package neoart.flod.core {
 
   public class SBPlayer extends CorePlayer {
-    public var
-      mixer   : Soundblaster,
-      length  : int,
-      restart : int,
-      track   : Vector.<int>;
-    protected var
-      timer   : int,
-      master  : int;
+    
+    public var mixer   : Soundblaster;
+    public var length  : int;
+    public var restart : int;
+    public var track   : Vector.<int>;
+    
+    protected var timer   : int;
+    protected var master  : int;
 
     public function SBPlayer(mixer:Soundblaster = null) {
       this.mixer = mixer || new Soundblaster();
@@ -36,8 +36,11 @@ package neoart.flod.core {
   }
 
     override public function set volume(value:Number):void {
-      if (value < 0.0) value = 0.0;
-        else if (value > 1.0) value = 1.0;
+      if (value < 0.0) {
+	  value = 0.0;}
+        else if (value > 1.0) {
+			value = 1.0;
+		}
 
       master = value * 64;
     }
@@ -50,7 +53,8 @@ package neoart.flod.core {
       mixer.setup(channels);
     }
 
-    override protected function initialize():void {
+    override protected function initialize():void 
+	{
       super.initialize();
       timer  = speed;
       master = 64;

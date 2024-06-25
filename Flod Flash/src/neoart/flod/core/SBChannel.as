@@ -18,47 +18,47 @@
 package neoart.flod.core {
 
   public final class SBChannel {
-    public var
-      next        : SBChannel,
-      mute        : int,
-      enabled     : int,
-      sample      : SBSample,
-      length      : int,
-      index       : int,
-      pointer     : int,
-      delta       : int,
-      fraction    : Number,
-      speed       : Number,
-      dir         : int,
-      oldSample   : SBSample,
-      oldLength   : int,
-      oldPointer  : int,
-      oldFraction : Number,
-      oldSpeed    : Number,
-      oldDir      : int,
-      volume      : Number,
-      lvol        : Number,
-      rvol        : Number,
-      panning     : int,
-      lpan        : Number,
-      rpan        : Number,
-      ldata       : Number,
-      rdata       : Number,
-      mixCounter  : int,
-      lmixRampU   : Number,
-      lmixDeltaU  : Number,
-      rmixRampU   : Number,
-      rmixDeltaU  : Number,
-      lmixRampD   : Number,
-      lmixDeltaD  : Number,
-      rmixRampD   : Number,
-      rmixDeltaD  : Number,
-      volCounter  : int,
-      lvolDelta   : Number,
-      rvolDelta   : Number,
-      panCounter  : int,
-      lpanDelta   : Number,
-      rpanDelta   : Number;
+    
+    public var next        : SBChannel;
+    public var mute        : int;
+    public var enabled     : int;
+    public var sample      : SBSample;
+    public var length      : int;
+    public var index       : int;
+    public var pointer     : int;
+    public var delta       : int;
+    public var fraction    : Number;
+    public var speed       : Number;
+    public var dir         : int;
+    public var oldSample   : SBSample;
+    public var oldLength   : int;
+    public var oldPointer  : int;
+    public var oldFraction : Number;
+    public var oldSpeed    : Number;
+    public var oldDir      : int;
+    public var volume      : Number;
+    public var lvol        : Number;
+    public var rvol        : Number;
+    public var panning     : int;
+    public var lpan        : Number;
+    public var rpan        : Number;
+    public var ldata       : Number;
+    public var rdata       : Number;
+    public var mixCounter  : int;
+    public var lmixRampU   : Number;
+    public var lmixDeltaU  : Number;
+    public var rmixRampU   : Number;
+    public var rmixDeltaU  : Number;
+    public var lmixRampD   : Number;
+    public var lmixDeltaD  : Number;
+    public var rmixRampD   : Number;
+    public var rmixDeltaD  : Number;
+    public var volCounter  : int;
+    public var lvolDelta   : Number;
+    public var rvolDelta   : Number;
+    public var panCounter  : int;
+    public var lpanDelta   : Number;
+    public var rpanDelta   : Number;
 
     internal function initialize():void {
       enabled     = 0;
@@ -79,7 +79,7 @@ package neoart.flod.core {
       volume      = 0.0;
       lvol        = 0.0;
       rvol        = 0.0;
-      panning     = 128
+      panning     = 128;
       lpan        = 0.5;
       rpan        = 0.5;
       ldata       = 0.0;

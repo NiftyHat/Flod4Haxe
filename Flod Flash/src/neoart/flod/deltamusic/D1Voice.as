@@ -19,32 +19,32 @@ package neoart.flod.deltamusic {
   import neoart.flod.core.*;
 
   public final class D1Voice {
-    internal var
-      index         : int,
-      next          : D1Voice,
-      channel       : AmigaChannel,
-      sample        : D1Sample,
-      trackPos      : int,
-      patternPos    : int,
-      status        : int,
-      speed         : int,
-      step          : AmigaStep,
-      row           : AmigaRow,
-      note          : int,
-      period        : int,
-      arpeggioPos   : int,
-      pitchBend     : int,
-      tableCtr      : int,
-      tablePos      : int,
-      vibratoCtr    : int,
-      vibratoDir    : int,
-      vibratoPos    : int,
-      vibratoPeriod : int,
-      volume        : int,
-      attackCtr     : int,
-      decayCtr      : int,
-      releaseCtr    : int,
-      sustain       : int;
+    
+    internal var index         : int;
+    internal var next          : D1Voice;
+    internal var channel       : AmigaChannel;
+    internal var sample        : D1Sample;
+    internal var trackPos      : int;
+    internal var patternPos    : int;
+    internal var status        : int;
+    internal var speed         : int;
+    internal var step          : AmigaStep;
+    internal var row           : AmigaRow;
+    internal var note          : int;
+    internal var period        : int;
+    internal var arpeggioPos   : int;
+    internal var pitchBend     : int;
+    internal var tableCtr      : int;
+    internal var tablePos      : int;
+    internal var vibratoCtr    : int;
+    internal var vibratoDir    : int;
+    internal var vibratoPos    : int;
+    internal var vibratoPeriod : int;
+    internal var volume        : int;
+    internal var attackCtr     : int;
+    internal var decayCtr      : int;
+    internal var releaseCtr    : int;
+    internal var sustain       : int;
 
     public function D1Voice(index:int) {
       this.index = index;

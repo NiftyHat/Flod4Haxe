@@ -20,20 +20,20 @@ package neoart.flod.fasttracker {
   import neoart.flod.core.*;
 
   public final class F2Player extends SBPlayer {
-    internal var
-      patterns      : Vector.<F2Pattern>,
-      instruments   : Vector.<F2Instrument>,
-      linear        : int;
-    private var
-      voices        : Vector.<F2Voice>,
-      order         : int,
-      position      : int,
-      nextOrder     : int,
-      nextPosition  : int,
-      pattern       : F2Pattern,
-      patternDelay  : int,
-      patternOffset : int,
-      complete      : int;
+    
+    internal var patterns      : Vector.<F2Pattern>;
+    internal var instruments   : Vector.<F2Instrument>;
+    internal var linear        : int;
+    
+    private var voices        : Vector.<F2Voice>;
+    private var order         : int;
+    private var position      : int;
+    private var nextOrder     : int;
+    private var nextPosition  : int;
+    private var pattern       : F2Pattern;
+    private var patternDelay  : int;
+    private var patternOffset : int;
+    private var complete      : int;
 
     public function F2Player(mixer:Soundblaster = null) {
       super(mixer);
@@ -209,8 +209,12 @@ package neoart.flod.fasttracker {
               case FX_POSITION_JUMP:
                 nextOrder = row.param;
 
-                if (nextOrder >= length) complete = 1;
-                  else nextPosition = 0;
+                if (nextOrder >= length) {
+					complete = 1;
+				}
+                 else {
+					  nextPosition = 0;
+				}
 
                 jumpFlag      = 1;
                 patternOffset = 0;
@@ -290,8 +294,12 @@ package neoart.flod.fasttracker {
                 break;
               case FX_SET_SPEED:
                 if (!row.param) break;
-                if (row.param < 32) timer = row.param;
-                  else mixer.samplesTick = 110250 / row.param;
+                if (row.param < 32) {
+					timer = row.param;
+				}
+                  else {
+					  mixer.samplesTick = 110250 / row.param;
+				}
                 break;
               case FX_SET_GLOBAL_VOLUME:
                 master = row.param;
@@ -644,13 +652,13 @@ package neoart.flod.fasttracker {
           panning = (voice.panEnvelope.value << 2);
           flags |= UPDATE_PANNING;
 
-          if (panning < 0) panning = 0;
-            else if (panning > 255) panning = 255;
+          if (panning < 0) {panning = 0;}
+            else if (panning > 255) {panning = 255;}
         }
 
         if (flags & UPDATE_VOLUME) {
-          if (volume < 0) volume = 0;
-            else if (volume > 64) volume = 64;
+          if (volume < 0) {volume = 0;}
+            else if (volume > 64) {volume = 64;}
 
           chan.volume = VOLUMES[int((volume * master) >> 6)];
           chan.lvol = chan.volume * chan.lpan;
@@ -765,8 +773,11 @@ package neoart.flod.fasttracker {
           panning = (voice.panEnvelope.value << 2);
           flags |= UPDATE_PANNING;
 
-          if (panning < 0) panning = 0;
-            else if (panning > 255) panning = 255;
+          if (panning < 0) {
+		  panning = 0;
+		  
+		  }
+            else if (panning > 255) {panning = 255;}
         }
 
         if (!chan.enabled) {
@@ -777,8 +788,8 @@ package neoart.flod.fasttracker {
         }
 
         if (flags & UPDATE_VOLUME) {
-          if (volume < 0) volume = 0;
-            else if (volume > 64) volume = 64;
+          if (volume < 0) {volume = 0;}
+            else if (volume > 64) {volume = 64;}
 
           volume = VOLUMES[int((volume * master) >> 6)];
           lvol = volume * PANNING[int(256 - panning)];
@@ -1068,7 +1079,7 @@ package neoart.flod.fasttracker {
       sample.length = 220;
       sample.data = new Vector.<Number>(220, true);
 
-      for (i = 0; i < 220; ++i) sample.data[i] = 0.0;
+      for (i = 0; i < 220; ++i) {sample.data[i] = 0.0;}
 
       instr.samples[0] = sample;
       instruments[0] = instr;
@@ -1169,79 +1180,79 @@ package neoart.flod.fasttracker {
           break;
       }
 
-      if (voice.volume < 0) voice.volume = 0;
-        else if (voice.volume > 64) voice.volume = 64;
+      if (voice.volume < 0) {voice.volume = 0;}
+        else if (voice.volume > 64) {voice.volume = 64;}
 
       voice.flags |= UPDATE_VOLUME;
     }
 
-    internal static const
-      UPDATE_PERIOD    : int = 1,
-      UPDATE_VOLUME    : int = 2,
-      UPDATE_PANNING   : int = 4,
-      UPDATE_TRIGGER   : int = 8,
-      UPDATE_ALL       : int = 15,
-      SHORT_RAMP       : int = 32,
+    
+    internal static const UPDATE_PERIOD    : int = 1;
+    internal static const UPDATE_VOLUME    : int = 2;
+    internal static const UPDATE_PANNING   : int = 4;
+    internal static const UPDATE_TRIGGER   : int = 8;
+    internal static const UPDATE_ALL       : int = 15;
+    internal static const SHORT_RAMP       : int = 32;
 
-      ENVELOPE_ON      : int = 1,
-      ENVELOPE_SUSTAIN : int = 2,
-      ENVELOPE_LOOP    : int = 4,
+    internal static const ENVELOPE_ON      : int = 1;
+    internal static const ENVELOPE_SUSTAIN : int = 2;
+    internal static const ENVELOPE_LOOP    : int = 4;
 
-      LOWER_NOTE       : int = 0,
-      HIGHER_NOTE      : int = 118,
-      KEYOFF_NOTE      : int = 97,
+    internal static const LOWER_NOTE       : int = 0;
+    internal static const HIGHER_NOTE      : int = 118;
+    internal static const KEYOFF_NOTE      : int = 97;
 
-      FX_ARPEGGIO                : int = 0,
-      FX_PORTAMENTO_UP           : int = 1,
-      FX_PORTAMENTO_DOWN         : int = 2,
-      FX_TONE_PORTAMENTO         : int = 3,
-      FX_VIBRATO                 : int = 4,
-      FX_TONE_PORTA_VOLUME_SLIDE : int = 5,
-      FX_VIBRATO_VOLUME_SLIDE    : int = 6,
-      FX_TREMOLO                 : int = 7,
-      FX_SET_PANNING             : int = 8,
-      FX_SAMPLE_OFFSET           : int = 9,
-      FX_VOLUME_SLIDE            : int = 10,
-      FX_POSITION_JUMP           : int = 11,
-      FX_SET_VOLUME              : int = 12,
-      FX_PATTERN_BREAK           : int = 13,
-      FX_EXTENDED_EFFECTS        : int = 14,
-      FX_SET_SPEED               : int = 15,
-      FX_SET_GLOBAL_VOLUME       : int = 16,
-      FX_GLOBAL_VOLUME_SLIDE     : int = 17,
-      FX_KEYOFF                  : int = 20,
-      FX_SET_ENVELOPE_POSITION   : int = 21,
-      FX_PANNING_SLIDE           : int = 24,
-      FX_MULTI_RETRIG_NOTE       : int = 27,
-      FX_TREMOR                  : int = 29,
-      FX_EXTRA_FINE_PORTAMENTO   : int = 33,
+    internal static const FX_ARPEGGIO                : int = 0;
+    internal static const FX_PORTAMENTO_UP           : int = 1;
+    internal static const FX_PORTAMENTO_DOWN         : int = 2;
+    internal static const FX_TONE_PORTAMENTO         : int = 3;
+    internal static const FX_VIBRATO                 : int = 4;
+    internal static const FX_TONE_PORTA_VOLUME_SLIDE : int = 5;
+    internal static const FX_VIBRATO_VOLUME_SLIDE    : int = 6;
+    internal static const FX_TREMOLO                 : int = 7;
+    internal static const FX_SET_PANNING             : int = 8;
+    internal static const FX_SAMPLE_OFFSET           : int = 9;
+    internal static const FX_VOLUME_SLIDE            : int = 10;
+    internal static const FX_POSITION_JUMP           : int = 11;
+    internal static const FX_SET_VOLUME              : int = 12;
+    internal static const FX_PATTERN_BREAK           : int = 13;
+    internal static const FX_EXTENDED_EFFECTS        : int = 14;
+    internal static const FX_SET_SPEED               : int = 15;
+    internal static const FX_SET_GLOBAL_VOLUME       : int = 16;
+    internal static const FX_GLOBAL_VOLUME_SLIDE     : int = 17;
+    internal static const FX_KEYOFF                  : int = 20;
+    internal static const FX_SET_ENVELOPE_POSITION   : int = 21;
+    internal static const FX_PANNING_SLIDE           : int = 24;
+    internal static const FX_MULTI_RETRIG_NOTE       : int = 27;
+    internal static const FX_TREMOR                  : int = 29;
+    internal static const FX_EXTRA_FINE_PORTAMENTO   : int = 33;
 
-      EX_FINE_PORTAMENTO_UP      : int = 1,
-      EX_FINE_PORTAMENTO_DOWN    : int = 2,
-      EX_GLISSANDO_CONTROL       : int = 3,
-      EX_VIBRATO_CONTROL         : int = 4,
-      EX_SET_FINETUNE            : int = 5,
-      EX_PATTERN_LOOP            : int = 6,
-      EX_TREMOLO_CONTROL         : int = 7,
-      EX_RETRIG_NOTE             : int = 9,
-      EX_FINE_VOLUME_SLIDE_UP    : int = 10,
-      EX_FINE_VOLUME_SLIDE_DOWN  : int = 11,
-      EX_NOTE_CUT                : int = 12,
-      EX_NOTE_DELAY              : int = 13,
-      EX_PATTERN_DELAY           : int = 14,
+    internal static const EX_FINE_PORTAMENTO_UP      : int = 1;
+    internal static const EX_FINE_PORTAMENTO_DOWN    : int = 2;
+    internal static const EX_GLISSANDO_CONTROL       : int = 3;
+    internal static const EX_VIBRATO_CONTROL         : int = 4;
+    internal static const EX_SET_FINETUNE            : int = 5;
+    internal static const EX_PATTERN_LOOP            : int = 6;
+    internal static const EX_TREMOLO_CONTROL         : int = 7;
+    internal static const EX_RETRIG_NOTE             : int = 9;
+    internal static const EX_FINE_VOLUME_SLIDE_UP    : int = 10;
+    internal static const EX_FINE_VOLUME_SLIDE_DOWN  : int = 11;
+    internal static const EX_NOTE_CUT                : int = 12;
+    internal static const EX_NOTE_DELAY              : int = 13;
+    internal static const EX_PATTERN_DELAY           : int = 14;
 
-      VX_VOLUME_SLIDE_DOWN       : int = 6,
-      VX_VOLUME_SLIDE_UP         : int = 7,
-      VX_FINE_VOLUME_SLIDE_DOWN  : int = 8,
-      VX_FINE_VOLUME_SLIDE_UP    : int = 9,
-      VX_SET_VIBRATO_SPEED       : int = 10,
-      VX_VIBRATO                 : int = 11,
-      VX_SET_PANNING             : int = 12,
-      VX_PANNING_SLIDE_LEFT      : int = 13,
-      VX_PANNING_SLIDE_RIGHT     : int = 14,
-      VX_TONE_PORTAMENTO         : int = 15,
+    internal static const VX_VOLUME_SLIDE_DOWN       : int = 6;
+    internal static const VX_VOLUME_SLIDE_UP         : int = 7;
+    internal static const VX_FINE_VOLUME_SLIDE_DOWN  : int = 8;
+    internal static const VX_FINE_VOLUME_SLIDE_UP    : int = 9;
+    internal static const VX_SET_VIBRATO_SPEED       : int = 10;
+    internal static const VX_VIBRATO                 : int = 11;
+    internal static const VX_SET_PANNING             : int = 12;
+    internal static const VX_PANNING_SLIDE_LEFT      : int = 13;
+    internal static const VX_PANNING_SLIDE_RIGHT     : int = 14;
+    internal static const VX_TONE_PORTAMENTO         : int = 15;
 
-      PANNING : Vector.<Number> = Vector.<Number>([
+    internal static const PANNING : Vector.<Number> = Vector.<Number>([
         0.000000,0.044170,0.062489,0.076523,0.088371,0.098821,0.108239,0.116927,0.124977,
         0.132572,0.139741,0.146576,0.153077,0.159335,0.165350,0.171152,0.176772,0.182210,
         0.187496,0.192630,0.197643,0.202503,0.207273,0.211951,0.216477,0.220943,0.225348,
@@ -1270,9 +1281,9 @@ package neoart.flod.fasttracker {
         0.662890,0.664378,0.665836,0.667294,0.668783,0.670241,0.671699,0.673127,0.674585,
         0.676043,0.677471,0.678929,0.680357,0.681785,0.683213,0.684641,0.686068,0.687496,
         0.688894,0.690321,0.691749,0.693147,0.694574,0.695972,0.697369,0.698767,0.700164,
-        0.701561,0.702928,0.704326,0.705723,0.707110]),
+        0.701561, 0.702928, 0.704326, 0.705723, 0.707110]);
 
-      VOLUMES : Vector.<Number> = Vector.<Number>([
+    internal static const VOLUMES : Vector.<Number> = Vector.<Number>([
         0.000000,0.005863,0.013701,0.021569,0.029406,0.037244,0.045082,0.052919,0.060757,
         0.068625,0.076463,0.084300,0.092138,0.099976,0.107844,0.115681,0.123519,0.131357,
         0.139194,0.147032,0.154900,0.162738,0.170575,0.178413,0.186251,0.194119,0.201956,
@@ -1280,9 +1291,9 @@ package neoart.flod.fasttracker {
         0.280394,0.288231,0.296069,0.303907,0.311744,0.319582,0.327450,0.335288,0.343125,
         0.350963,0.358800,0.366669,0.374506,0.382344,0.390182,0.398019,0.405857,0.413725,
         0.421563,0.429400,0.437238,0.445076,0.452944,0.460781,0.468619,0.476457,0.484294,
-        0.492132,0.500000]),
+        0.492132, 0.500000]);
 
-      PERIODS : Vector.<int> = Vector.<int>([
+    internal static const PERIODS : Vector.<int> = Vector.<int>([
         29024,27392,25856,24384,23040,21696,20480,19328,18240,17216,16256,15360,14512,
         13696,12928,12192,11520,10848,10240, 9664, 9120, 8608, 8128, 7680, 7256, 6848,
          6464, 6096, 5760, 5424, 5120, 4832, 4560, 4304, 4064, 3840, 3628, 3424, 3232,

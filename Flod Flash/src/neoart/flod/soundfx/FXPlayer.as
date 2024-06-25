@@ -20,16 +20,16 @@ package neoart.flod.soundfx {
   import neoart.flod.core.*;
 
   public final class FXPlayer extends AmigaPlayer {
-    private var
-      track      : Vector.<int>,
-      patterns   : Vector.<AmigaRow>,
-      samples    : Vector.<AmigaSample>,
-      length     : int,
-      voices     : Vector.<FXVoice>,
-      trackPos   : int,
-      patternPos : int,
-      jumpFlag   : int,
-      delphine   : int;
+    
+    private var track      : Vector.<int>;
+    private var patterns   : Vector.<AmigaRow>;
+    private var samples    : Vector.<AmigaSample>;
+    private var length     : int;
+    private var voices     : Vector.<FXVoice>;
+    private var trackPos   : int;
+    private var patternPos : int;
+    private var jumpFlag   : int;
+    private var delphine   : int;
 
     public function FXPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -46,9 +46,9 @@ package neoart.flod.soundfx {
 
     override public function set force(value:int):void {
       if (value < SOUNDFX_10)
-        value = SOUNDFX_10;
+       { value = SOUNDFX_10;}
       else if (value > SOUNDFX_20)
-        value = SOUNDFX_20;
+       { value = SOUNDFX_20;}
 
       version = value;
     }
@@ -85,11 +85,11 @@ package neoart.flod.soundfx {
             voice.volume = sample.volume;
 
             if (voice.effect == 5)
-              voice.volume += voice.param;
+             { voice.volume += voice.param;}
             else if (voice.effect == 6)
-              voice.volume -= voice.param;
+              {voice.volume -= voice.param;
 
-            chan.volume = voice.volume;
+			  chan.volume = voice.volume;}
           } else {
             sample = voice.sample;
           }
@@ -115,8 +115,8 @@ package neoart.flod.soundfx {
                 chan.pointer = sample.pointer;
                 chan.length  = sample.length;
 
-                if (delphine) chan.period = voice.period << 1;
-                  else chan.period  = voice.period;
+                if (delphine) {chan.period = voice.period << 1;}
+                  else {chan.period  = voice.period;}
                 break;
             }
 
@@ -194,16 +194,16 @@ package neoart.flod.soundfx {
                   continue;
                 }
 
-                if (value == 1) value = voice.param & 0x0f;
-                  else value = voice.param >> 4;
+                if (value == 1) {value = voice.param & 0x0f;}
+                  else {value = voice.param >> 4;}
 
                 while (voice.last != PERIODS[index]) index++;
                 chan.period = PERIODS[int(index + value)];
                 break;
               case 2:   //pitchbend
                 value = voice.param >> 4;
-                if (value) voice.period += value;
-                  else voice.period -= voice.param & 0x0f;
+                if (value) {voice.period += value;}
+                  else {voice.period -= voice.param & 0x0f;}
                 chan.period = voice.period;
                 break;
               case 3:   //filter on
@@ -214,6 +214,7 @@ package neoart.flod.soundfx {
                 break;
               case 8:   //step down
                 value = -1;
+				break;
               case 7:   //step up
                 voice.stepSpeed  = voice.param & 0x0f;
                 voice.stepPeriod = version > SOUNDFX_18 ? voice.last : voice.period;
@@ -386,7 +387,9 @@ package neoart.flod.soundfx {
         if (sample == null) continue;
 
         if (sample.loop)
-          sample.loopPtr = sample.pointer + sample.loop;
+         {
+			sample.loopPtr = sample.pointer + sample.loop;
+		 }
         else {
           sample.loopPtr = amiga.memory.length;
           sample.repeat  = 2;
@@ -423,11 +426,11 @@ package neoart.flod.soundfx {
       }
     }
 
-    public static const
-      SOUNDFX_10 = 1,
-      SOUNDFX_18 = 2,
-      SOUNDFX_19 = 3,
-      SOUNDFX_20 = 4;
+    
+    public static const  SOUNDFX_10 :int = 1;
+    public static const  SOUNDFX_18 :int = 2;
+     public static const SOUNDFX_19 :int = 3;
+     public static const SOUNDFX_20 :int = 4;
 
     private const
       PERIODS: Vector.<int> = Vector.<int>([

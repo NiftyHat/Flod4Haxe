@@ -19,46 +19,46 @@ package neoart.flod.fred {
   import neoart.flod.core.*;
 
   public final class FEVoice {
-    internal var
-      index         : int,
-      bitFlag       : int,
-      next          : FEVoice,
-      channel       : AmigaChannel,
-      sample        : FESample,
-      trackPos      : int,
-      patternPos    : int,
-      tick          : int,
-      busy          : int,
-      synth         : int,
-      note          : int,
-      period        : int,
-      volume        : int,
-      envelopePos   : int,
-      sustainTime   : int,
-      arpeggioPos   : int,
-      arpeggioSpeed : int,
-      portamento    : int,
-      portaCounter  : int,
-      portaDelay    : int,
-      portaFlag     : int,
-      portaLimit    : int,
-      portaNote     : int,
-      portaPeriod   : int,
-      portaSpeed    : int,
-      vibrato       : int,
-      vibratoDelay  : int,
-      vibratoDepth  : int,
-      vibratoFlag   : int,
-      vibratoSpeed  : int,
-      pulseCounter  : int,
-      pulseDelay    : int,
-      pulseDir      : int,
-      pulsePos      : int,
-      pulseSpeed    : int,
-      blendCounter  : int,
-      blendDelay    : int,
-      blendDir      : int,
-      blendPos      : int;
+    
+    internal var index         : int;
+    internal var bitFlag       : int;
+    internal var next          : FEVoice;
+    internal var channel       : AmigaChannel;
+    internal var sample        : FESample;
+    internal var trackPos      : int;
+    internal var patternPos    : int;
+    internal var tick          : int;
+    internal var busy          : int;
+    internal var synth         : int;
+    internal var note          : int;
+    internal var period        : int;
+    internal var volume        : int;
+    internal var envelopePos   : int;
+    internal var sustainTime   : int;
+    internal var arpeggioPos   : int;
+    internal var arpeggioSpeed : int;
+    internal var portamento    : int;
+    internal var portaCounter  : int;
+    internal var portaDelay    : int;
+    internal var portaFlag     : int;
+    internal var portaLimit    : int;
+    internal var portaNote     : int;
+    internal var portaPeriod   : int;
+    internal var portaSpeed    : int;
+    internal var vibrato       : int;
+    internal var vibratoDelay  : int;
+    internal var vibratoDepth  : int;
+    internal var vibratoFlag   : int;
+    internal var vibratoSpeed  : int;
+    internal var pulseCounter  : int;
+    internal var pulseDelay    : int;
+    internal var pulseDir      : int;
+    internal var pulsePos      : int;
+    internal var pulseSpeed    : int;
+    internal var blendCounter  : int;
+    internal var blendDelay    : int;
+    internal var blendDir      : int;
+    internal var blendPos      : int;
 
     public function FEVoice(index:int, bitFlag:int) {
       this.index = index;

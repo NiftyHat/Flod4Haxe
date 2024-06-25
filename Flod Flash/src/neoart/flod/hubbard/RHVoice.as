@@ -19,25 +19,25 @@ package neoart.flod.hubbard {
   import neoart.flod.core.*;
 
   public final class RHVoice {
-    internal var
-      index      : int,
-      bitFlag    : int,
-      next       : RHVoice,
-      channel    : AmigaChannel,
-      sample     : RHSample,
-      trackPtr   : int,
-      trackPos   : int,
-      patternPos : int,
-      tick       : int,
-      busy       : int,
-      flags      : int,
-      note       : int,
-      period     : int,
-      volume     : int,
-      portaSpeed : int,
-      vibratoPtr : int,
-      vibratoPos : int,
-      synthPos   : int;
+    
+    internal var index      : int;
+    internal var bitFlag    : int;
+    internal var next       : RHVoice;
+    internal var channel    : AmigaChannel;
+    internal var sample     : RHSample;
+    internal var trackPtr   : int;
+    internal var trackPos   : int;
+    internal var patternPos : int;
+    internal var tick       : int;
+    internal var busy       : int;
+    internal var flags      : int;
+    internal var note       : int;
+    internal var period     : int;
+    internal var volume     : int;
+    internal var portaSpeed : int;
+    internal var vibratoPtr : int;
+    internal var vibratoPos : int;
+    internal var synthPos   : int;
 
     public function RHVoice(index:int, bitFlag:int) {
       this.index = index;

@@ -106,8 +106,12 @@ package neoart.flod.core {
               } else chan.pointer = chan.index;
 
               if (!chan.mute) {
-                if (!chan.dir) value = d[chan.pointer];
-                  else value = d[int(chan.dir - chan.pointer)];
+                if (!chan.dir) {
+					value = d[chan.pointer];
+				}
+                  else {
+					  value = d[int(chan.dir - chan.pointer)];
+				  }
 
                 chan.ldata = value * chan.lvol;
                 chan.rdata = value * chan.rvol;
@@ -140,11 +144,19 @@ package neoart.flod.core {
 
       if (player.record) {
         for (i = 0; i < size; ++i) {
-          if (sample.l > 1.0) sample.l = 1.0;
-            else if (sample.l < -1.0) sample.l = -1.0;
+          if (sample.l > 1.0) {
+		  sample.l = 1.0;
+		  
+		  }
+            else if (sample.l < -1.0) {
+				sample.l = -1.0;
+			}
 
-          if (sample.r > 1.0) sample.r = 1.0;
-            else if (sample.r < -1.0) sample.r = -1.0;
+          if (sample.r > 1.0) {
+		  sample.r = 1.0;}
+            else if (sample.r < -1.0) {
+				sample.r = -1.0;
+			}
 
           wave.writeShort(int(sample.l * (sample.l < 0 ? 32768 : 32767)));
           wave.writeShort(int(sample.r * (sample.r < 0 ? 32768 : 32767)));
@@ -157,11 +169,21 @@ package neoart.flod.core {
         }
       } else {
         for (i = 0; i < size; ++i) {
-          if (sample.l > 1.0) sample.l = 1.0;
-            else if (sample.l < -1.0) sample.l = -1.0;
+          if (sample.l > 1.0) {
+		  sample.l = 1.0;
+		  
+			}
+            else if (sample.l < -1.0) {
+				sample.l = -1.0;
+			}
 
-          if (sample.r > 1.0) sample.r = 1.0;
-            else if (sample.r < -1.0) sample.r = -1.0;
+          if (sample.r > 1.0) {
+		  sample.r = 1.0;
+		  
+		  }
+            else if (sample.r < -1.0) {
+				sample.r = -1.0;
+			}
 
           data.writeFloat(sample.l);
           data.writeFloat(sample.r);
@@ -351,11 +373,20 @@ package neoart.flod.core {
 
       if (player.record) {
         for (i = 0; i < size; ++i) {
-          if (sample.l > 1.0) sample.l = 1.0;
-            else if (sample.l < -1.0) sample.l = -1.0;
+          if (sample.l > 1.0) {
+		  sample.l = 1.0;
+		  
+		  }
+            else if (sample.l < -1.0) {
+				sample.l = -1.0;
+			}
 
-          if (sample.r > 1.0) sample.r = 1.0;
-            else if (sample.r < -1.0) sample.r = -1.0;
+          if (sample.r > 1.0) {
+			  sample.r = 1.0;
+		  }
+            else if (sample.r < -1.0) {
+				sample.r = -1.0;
+			}
 
           wave.writeShort(int(sample.l * (sample.l < 0 ? 32768 : 32767)));
           wave.writeShort(int(sample.r * (sample.r < 0 ? 32768 : 32767)));
@@ -368,11 +399,17 @@ package neoart.flod.core {
         }
       } else {
         for (i = 0; i < size; ++i) {
-          if (sample.l > 1.0) sample.l = 1.0;
-            else if (sample.l < -1.0) sample.l = -1.0;
+          if (sample.l > 1.0){
+		  sample.l = 1.0;}
+            else if (sample.l < -1.0) {
+				sample.l = -1.0;
+			}
 
-          if (sample.r > 1.0) sample.r = 1.0;
-            else if (sample.r < -1.0) sample.r = -1.0;
+          if (sample.r > 1.0) {
+		  sample.r = 1.0;}
+            else if (sample.r < -1.0) {
+				sample.r = -1.0;
+			}
 
           data.writeFloat(sample.l);
           data.writeFloat(sample.r);

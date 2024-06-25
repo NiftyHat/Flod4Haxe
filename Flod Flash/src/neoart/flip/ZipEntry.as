@@ -17,17 +17,17 @@ package neoart.flip {
   import flash.utils.*;
 
   public final class ZipEntry {
-    public var
-      name       : String,
-      extra      : ByteArray,
-      version    : int,
-      flag       : int,
-      method     : int,
-      time       : uint,
-      crc        : uint,
-      compressed : uint,
-      size       : uint,
-      offset     : uint;
+    
+    public var  name       : String;
+    public var  extra      : ByteArray;
+    public var  version    : int;
+    public var  flag       : int;
+    public var method     : int;
+    public var  time       : uint;
+    public var  crc        : uint;
+    public var  compressed : uint;
+    public var  size       : uint;
+    public var offset     : uint;
 
     public function get date():Date {
       return new Date(

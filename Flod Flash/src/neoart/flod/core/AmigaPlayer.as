@@ -18,10 +18,8 @@
 package neoart.flod.core {
 
   public class AmigaPlayer extends CorePlayer {
-    public var
-      amiga    : Amiga;
-    protected var
-      standard : int;
+    public var amiga    : Amiga;
+    protected var standard : int;
 
     public function AmigaPlayer(amiga:Amiga) {
       this.amiga = amiga || new Amiga();
@@ -49,8 +47,12 @@ package neoart.flod.core {
     override public function set stereo(value:Number):void {
       var chan:AmigaChannel = amiga.channels[0];
 
-      if (value < 0.0) value = 0.0;
-        else if (value > 1.0) value = 1.0;
+      if (value < 0.0) {
+		  value = 0.0;
+	  }
+        else if (value > 1.0) {
+			value = 1.0;
+		}
 
       while (chan) {
         chan.level = value * chan.panning;
@@ -59,8 +61,12 @@ package neoart.flod.core {
     }
 
     override public function set volume(value:Number):void {
-      if (value < 0.0) value = 0.0;
-        else if (value > 1.0) value = 1.0;
+      if (value < 0.0) {
+	  value = 0.0; }
+	  
+        else if (value > 1.0) {
+			value = 1.0;
+		}
 
       amiga.master = value * 0.00390625;
     }

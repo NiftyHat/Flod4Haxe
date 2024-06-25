@@ -23,7 +23,7 @@
   Warning: the server must be able to handle the correct file extension, if it can't just rename the file
   to filename.wav and it should work...
 */
-package {
+package demos {
   import flash.display.*;
   import flash.events.*;
   import flash.net.*;
@@ -31,10 +31,9 @@ package {
   import neoart.flod.core.*;
 
   public final class Demo5 extends Sprite {
-    private var
-      url    : URLLoader,
-      loader : FileLoader,
-      player : CorePlayer;
+    private var   url    : URLLoader;
+     private var  loader : FileLoader;
+     private var  player : CorePlayer;
 
     public function Demo5() {
       loader = new FileLoader();

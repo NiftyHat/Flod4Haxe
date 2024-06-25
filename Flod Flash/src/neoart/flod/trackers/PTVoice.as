@@ -19,38 +19,38 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class PTVoice {
-    internal var
-      index        : int,
-      next         : PTVoice,
-      channel      : AmigaChannel,
-      sample       : PTSample,
-      enabled      : int,
-      loopCtr      : int,
-      loopPos      : int,
-      step         : int,
-      period       : int,
-      effect       : int,
-      param        : int,
-      volume       : int,
-      pointer      : int,
-      length       : int,
-      loopPtr      : int,
-      repeat       : int,
-      finetune     : int,
-      offset       : int,
-      portaDir     : int,
-      portaPeriod  : int,
-      portaSpeed   : int,
-      glissando    : int,
-      tremoloParam : int,
-      tremoloPos   : int,
-      tremoloWave  : int,
-      vibratoParam : int,
-      vibratoPos   : int,
-      vibratoWave  : int,
-      funkPos      : int,
-      funkSpeed    : int,
-      funkWave     : int;
+    
+    internal var index        : int;
+    internal var next         : PTVoice;
+    internal var channel      : AmigaChannel;
+    internal var sample       : PTSample;
+    internal var enabled      : int;
+    internal var loopCtr      : int;
+    internal var loopPos      : int;
+    internal var step         : int;
+    internal var period       : int;
+    internal var effect       : int;
+    internal var param        : int;
+    internal var volume       : int;
+    internal var pointer      : int;
+    internal var length       : int;
+    internal var loopPtr      : int;
+    internal var repeat       : int;
+    internal var finetune     : int;
+    internal var offset       : int;
+    internal var portaDir     : int;
+    internal var portaPeriod  : int;
+    internal var portaSpeed   : int;
+    internal var glissando    : int;
+    internal var tremoloParam : int;
+    internal var tremoloPos   : int;
+    internal var tremoloWave  : int;
+    internal var vibratoParam : int;
+    internal var vibratoPos   : int;
+    internal var vibratoWave  : int;
+    internal var funkPos      : int;
+    internal var funkSpeed    : int;
+    internal var funkWave     : int;
 
     public function PTVoice(index:int) {
       this.index = index;

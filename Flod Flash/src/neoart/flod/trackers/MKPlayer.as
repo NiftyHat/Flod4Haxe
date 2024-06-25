@@ -20,18 +20,18 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class MKPlayer extends AmigaPlayer {
-    private var
-      track        : Vector.<int>,
-      patterns     : Vector.<AmigaRow>,
-      samples      : Vector.<AmigaSample>,
-      length       : int,
-      restart      : int,
-      voices       : Vector.<MKVoice>,
-      trackPos     : int,
-      patternPos   : int,
-      jumpFlag     : int,
-      vibratoDepth : int,
-      restartSave  : int;
+    
+    private var track        : Vector.<int>;
+    private var patterns     : Vector.<AmigaRow>;
+    private var samples      : Vector.<AmigaSample>;
+    private var length       : int;
+    private var restart      : int;
+    private var voices       : Vector.<MKVoice>;
+    private var trackPos     : int;
+    private var patternPos   : int;
+    private var jumpFlag     : int;
+    private var vibratoDepth : int;
+    private var restartSave  : int;
 
     public function MKPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -50,14 +50,15 @@ package neoart.flod.trackers {
 
     override public function set force(value:int):void {
       if (value < SOUNDTRACKER_23)
-        value = SOUNDTRACKER_23;
+        {value = SOUNDTRACKER_23;}
       else if (value > NOISETRACKER_20)
-        value = NOISETRACKER_20;
+       { value = NOISETRACKER_20;}
 
+	   trace("force version" , value);
       version = value;
 
-      if (value == NOISETRACKER_20) vibratoDepth = 6;
-        else vibratoDepth = 7;
+      if (value == NOISETRACKER_20) {vibratoDepth = 6;}
+        else{ vibratoDepth = 7;}
 
       if (value == NOISETRACKER_10) {
         restartSave = restart;
@@ -131,8 +132,8 @@ package neoart.flod.trackers {
             case 15:  //set speed
               value = voice.param;
 
-              if (value < 1) value = 1;
-                else if (value > 31) value = 31;
+              if (value < 1) {value = 1;}
+                else if (value > 31) {value = 31;}
 
               speed = value;
               tick = 0;
@@ -165,8 +166,8 @@ package neoart.flod.trackers {
                 continue;
               }
 
-              if (value == 1) value = voice.param >> 4;
-                else value = voice.param & 0x0f;
+              if (value == 1) {value = voice.param >> 4;}
+                else {value = voice.param & 0x0f;}
 
               period = voice.period & 0x0fff;
               len = 37 - value;
@@ -227,8 +228,8 @@ package neoart.flod.trackers {
               value = (voice.vibratoPos >> 2) & 31;
               value = ((voice.vibratoSpeed & 0x0f) * VIBRATO[value]) >> vibratoDepth;
 
-              if (voice.vibratoPos > 127) chan.period = voice.period - value;
-                else chan.period = voice.period + value;
+              if (voice.vibratoPos > 127) {chan.period = voice.period - value;}
+                else {chan.period = voice.period + value;}
 
               value = (voice.vibratoSpeed >> 2) & 60;
               voice.vibratoPos = (voice.vibratoPos + value) & 255;
@@ -242,11 +243,11 @@ package neoart.flod.trackers {
             value = voice.param >> 4;
             slide = 0;
 
-            if (value) voice.volume += value;
-              else voice.volume -= voice.param & 0x0f;
+            if (value) {voice.volume += value;}
+              else {voice.volume -= voice.param & 0x0f;}
 
-            if (voice.volume < 0) voice.volume = 0;
-              else if (voice.volume > 64) voice.volume = 64;
+            if (voice.volume < 0) {voice.volume = 0;}
+              else if (voice.volume > 64) {voice.volume = 64;}
 
             chan.volume = voice.volume;
           }
@@ -365,6 +366,7 @@ package neoart.flod.trackers {
           version = NOISETRACKER_20;
 
         if (row.effect > 6 && row.effect < 10) {
+			trace(row.effect);
           version = 0;
           return;
         }
@@ -399,20 +401,20 @@ package neoart.flod.trackers {
         version = NOISETRACKER_11;
     }
 
-    public static const
-      SOUNDTRACKER_23 : int = 1,
-      SOUNDTRACKER_24 : int = 2,
-      NOISETRACKER_10 : int = 3,
-      NOISETRACKER_11 : int = 4,
-      NOISETRACKER_20 : int = 5;
+    
+    public static const SOUNDTRACKER_23 : int = 1;
+    public static const SOUNDTRACKER_24 : int = 2;
+    public static const NOISETRACKER_10 : int = 3;
+    public static const NOISETRACKER_11 : int = 4;
+    public static const NOISETRACKER_20 : int = 5;
 
-    private const
-      PERIODS: Vector.<int> = Vector.<int>([
+    
+    private const PERIODS: Vector.<int> = Vector.<int>([
         856,808,762,720,678,640,604,570,538,508,480,453,
         428,404,381,360,339,320,302,285,269,254,240,226,
-        214,202,190,180,170,160,151,143,135,127,120,113,0]),
+        214, 202, 190, 180, 170, 160, 151, 143, 135, 127, 120, 113, 0]);
 
-      VIBRATO: Vector.<int> = Vector.<int>([
+    private const VIBRATO: Vector.<int> = Vector.<int>([
           0, 24, 49, 74, 97,120,141,161,180,197,212,224,
         235,244,250,253,255,253,250,244,235,224,212,197,
         180,161,141,120, 97, 74, 49, 24]);

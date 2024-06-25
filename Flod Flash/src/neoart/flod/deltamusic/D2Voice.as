@@ -19,36 +19,36 @@ package neoart.flod.deltamusic {
   import neoart.flod.core.*;
 
   public final class D2Voice {
-    internal var
-      index          : int,
-      next           : D2Voice,
-      channel        : AmigaChannel,
-      sample         : D2Sample,
-      trackPtr       : int,
-      trackPos       : int,
-      trackLen       : int,
-      patternPos     : int,
-      restart        : int,
-      step           : AmigaStep,
-      row            : AmigaRow,
-      note           : int,
-      period         : int,
-      finalPeriod    : int,
-      arpeggioPtr    : int,
-      arpeggioPos    : int,
-      pitchBend      : int,
-      portamento     : int,
-      tableCtr       : int,
-      tablePos       : int,
-      vibratoCtr     : int,
-      vibratoDir     : int,
-      vibratoPos     : int,
-      vibratoPeriod  : int,
-      vibratoSustain : int,
-      volume         : int,
-      volumeMax      : int,
-      volumePos      : int,
-      volumeSustain  : int;
+    
+    internal var index          : int;
+    internal var next           : D2Voice;
+    internal var channel        : AmigaChannel;
+    internal var sample         : D2Sample;
+    internal var trackPtr       : int;
+    internal var trackPos       : int;
+    internal var trackLen       : int;
+    internal var patternPos     : int;
+    internal var restart        : int;
+    internal var step           : AmigaStep;
+    internal var row            : AmigaRow;
+    internal var note           : int;
+    internal var period         : int;
+    internal var finalPeriod    : int;
+    internal var arpeggioPtr    : int;
+    internal var arpeggioPos    : int;
+    internal var pitchBend      : int;
+    internal var portamento     : int;
+    internal var tableCtr       : int;
+    internal var tablePos       : int;
+    internal var vibratoCtr     : int;
+    internal var vibratoDir     : int;
+    internal var vibratoPos     : int;
+    internal var vibratoPeriod  : int;
+    internal var vibratoSustain : int;
+    internal var volume         : int;
+    internal var volumeMax      : int;
+    internal var volumePos      : int;
+    internal var volumeSustain  : int;
 
     public function D2Voice(index:int) {
       this.index = index;

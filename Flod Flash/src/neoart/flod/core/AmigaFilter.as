@@ -18,24 +18,24 @@
 package neoart.flod.core {
 
   public final class AmigaFilter {
-    public static const
-      AUTOMATIC : int =  0,
-      FORCE_ON  : int =  1,
-      FORCE_OFF : int = -1;
-    public var
-      active    : int,
-      forced    : int = FORCE_OFF;
-    private var
-      l0        : Number,
-      l1        : Number,
-      l2        : Number,
-      l3        : Number,
-      l4        : Number,
-      r0        : Number,
-      r1        : Number,
-      r2        : Number,
-      r3        : Number,
-      r4        : Number;
+    
+    public static const  AUTOMATIC : int =  0;
+    public static const  FORCE_ON  : int =  1;
+    public static const  FORCE_OFF : int = -1;
+   
+     public var  active    : int;
+     public var  forced    : int = FORCE_OFF;
+   
+      private var l0        : Number;
+      private var l1        : Number;
+      private var l2        : Number;
+     private var  l3        : Number;
+     private var  l4        : Number;
+      private var r0        : Number;
+      private var r1        : Number;
+      private var r2        : Number;
+      private var r3        : Number;
+      private var r4        : Number;
 
     internal function initialize():void {
       l0 = l1 = l2 = l3 = l4 = 0.0;
@@ -43,11 +43,16 @@ package neoart.flod.core {
     }
 
     internal function process(model:int, sample:Sample):void {
-      var FL:Number = 0.5213345843532200, P0:Number = 0.4860348337215757, P1:Number = 0.9314955486749749, d:Number = 1.0 - P0;
+      var FL:Number = 0.5213345843532200;
+	  var P0:Number = 0.4860348337215757;
+	  var P1:Number = 0.9314955486749749; 
+	  var d:Number = 1.0 - P0;
 
-      if (model == 0) {
-        l0 = P0 * sample.l + d * l0 + 1e-18 - 1e-18;
-        r0 = P0 * sample.r + d * r0 + 1e-18 - 1e-18;
+      if (model == 0) 
+	  {
+
+        l0 = P0 * sample.l + d * l0 + 1.0e-18 - 1.0e-18;
+        r0 = P0 * sample.r + d * r0 + 1.0e-18 - 1.0e-18;
         d = 1 - P1;
         sample.l = l1 = P1 * l0 + d * l1;
         sample.r = r1 = P1 * r0 + d * r1;
@@ -55,19 +60,25 @@ package neoart.flod.core {
 
       if ((active | forced) > 0) {
         d = 1 - FL;
-        l2 = FL * sample.l + d * l2 + 1e-18 - 1e-18;
-        r2 = FL * sample.r + d * r2 + 1e-18 - 1e-18;
+        l2 = FL * sample.l + d * l2 + 1.0e-18 - 1.0e-18;
+        r2 = FL * sample.r + d * r2 + 1.0e-18 - 1.0e-18;
         l3 = FL * l2 + d * l3;
         r3 = FL * r2 + d * r3;
         sample.l = l4 = FL * l3 + d * l4;
         sample.r = r4 = FL * r3 + d * r4;
       }
 
-      if (sample.l > 1.0) sample.l = 1.0;
-        else if (sample.l < -1.0) sample.l = -1.0;
+      if (sample.l > 1.0) {sample.l = 1.0;}
+        else if (sample.l < -1.0) {
+			sample.l = -1.0;
+		}
 
-      if (sample.r > 1.0) sample.r = 1.0;
-        else if (sample.r < -1.0) sample.r = -1.0;
+      if (sample.r > 1.0) {
+		  sample.r = 1.0;
+	  }
+        else if (sample.r < -1.0) {
+			sample.r = -1.0;
+		}
     }
   }
 }

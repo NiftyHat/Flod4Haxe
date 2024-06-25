@@ -19,31 +19,31 @@ package neoart.flod.soundmon {
   import neoart.flod.core.*;
 
   public final class BPSample extends AmigaSample {
-    internal var
-      synth       : int,
-      table       : int,
-      adsrControl : int,
-      adsrTable   : int,
-      adsrLen     : int,
-      adsrSpeed   : int,
-      lfoControl  : int,
-      lfoTable    : int,
-      lfoDepth    : int,
-      lfoLen      : int,
-      lfoDelay    : int,
-      lfoSpeed    : int,
-      egControl   : int,
-      egTable     : int,
-      egLen       : int,
-      egDelay     : int,
-      egSpeed     : int,
-      fxControl   : int,
-      fxDelay     : int,
-      fxSpeed     : int,
-      modControl  : int,
-      modTable    : int,
-      modLen      : int,
-      modDelay    : int,
-      modSpeed    : int;
+    
+    internal var synth       : int;
+    internal var table       : int;
+    internal var adsrControl : int;
+    internal var adsrTable   : int;
+    internal var adsrLen     : int;
+    internal var adsrSpeed   : int;
+    internal var lfoControl  : int;
+    internal var lfoTable    : int;
+    internal var lfoDepth    : int;
+    internal var lfoLen      : int;
+    internal var lfoDelay    : int;
+    internal var lfoSpeed    : int;
+    internal var egControl   : int;
+    internal var egTable     : int;
+    internal var egLen       : int;
+    internal var egDelay     : int;
+    internal var egSpeed     : int;
+    internal var fxControl   : int;
+    internal var fxDelay     : int;
+    internal var fxSpeed     : int;
+    internal var modControl  : int;
+    internal var modTable    : int;
+    internal var modLen      : int;
+    internal var modDelay    : int;
+    internal var modSpeed    : int;
   }
 }

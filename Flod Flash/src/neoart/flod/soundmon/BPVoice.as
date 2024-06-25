@@ -19,40 +19,40 @@ package neoart.flod.soundmon {
   import neoart.flod.core.*;
 
   public final class BPVoice {
-    internal var
-      index        : int,
-      next         : BPVoice,
-      channel      : AmigaChannel,
-      enabled      : int,
-      restart      : int,
-      note         : int,
-      period       : int,
-      sample       : int,
-      samplePtr    : int,
-      sampleLen    : int,
-      synth        : int,
-      synthPtr     : int,
-      arpeggio     : int,
-      autoArpeggio : int,
-      autoSlide    : int,
-      vibrato      : int,
-      volume       : int,
-      volumeDef    : int,
-      adsrControl  : int,
-      adsrPtr      : int,
-      adsrCtr      : int,
-      lfoControl   : int,
-      lfoPtr       : int,
-      lfoCtr       : int,
-      egControl    : int,
-      egPtr        : int,
-      egCtr        : int,
-      egValue      : int,
-      fxControl    : int,
-      fxCtr        : int,
-      modControl   : int,
-      modPtr       : int,
-      modCtr       : int;
+    
+    internal var index        : int;
+    internal var next         : BPVoice;
+    internal var channel      : AmigaChannel;
+    internal var enabled      : int;
+    internal var restart      : int;
+    internal var note         : int;
+    internal var period       : int;
+    internal var sample       : int;
+    internal var samplePtr    : int;
+    internal var sampleLen    : int;
+    internal var synth        : int;
+    internal var synthPtr     : int;
+    internal var arpeggio     : int;
+    internal var autoArpeggio : int;
+    internal var autoSlide    : int;
+    internal var vibrato      : int;
+    internal var volume       : int;
+    internal var volumeDef    : int;
+    internal var adsrControl  : int;
+    internal var adsrPtr      : int;
+    internal var adsrCtr      : int;
+    internal var lfoControl   : int;
+    internal var lfoPtr       : int;
+    internal var lfoCtr       : int;
+    internal var egControl    : int;
+    internal var egPtr        : int;
+    internal var egCtr        : int;
+    internal var egValue      : int;
+    internal var fxControl    : int;
+    internal var fxCtr        : int;
+    internal var modControl   : int;
+    internal var modPtr       : int;
+    internal var modCtr       : int;
 
     public function BPVoice(index:int) {
       this.index = index;

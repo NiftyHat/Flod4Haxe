@@ -20,14 +20,14 @@ package neoart.flod.futurecomposer {
   import neoart.flod.core.*;
 
   public final class FCPlayer extends AmigaPlayer {
-    private var
-      seqs    : ByteArray,
-      pats    : ByteArray,
-      vols    : ByteArray,
-      frqs    : ByteArray,
-      length  : int,
-      samples : Vector.<AmigaSample>,
-      voices  : Vector.<FCVoice>;
+    
+    private var seqs    : ByteArray;
+    private var pats    : ByteArray;
+    private var vols    : ByteArray;
+    private var frqs    : ByteArray;
+    private var length  : int;
+    private var samples : Vector.<AmigaSample>;
+    private var voices  : Vector.<FCVoice>;
 
     public function FCPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -141,9 +141,10 @@ package neoart.flod.futurecomposer {
             switch (info) {
               case 0xe2:  //set wave
                 chan.enabled  = 0;
-                voice.enabled = 1
+                voice.enabled = 1;
                 voice.volCtr  = 1;
                 voice.volStep = 0;
+				break;
               case 0xe4:  //change wave:
                 sample = samples[frqs.readUnsignedByte()];
                 if (sample) {
@@ -284,9 +285,9 @@ package neoart.flod.futurecomposer {
 
         if (voice.portamentoFlag && voice.portamento) {
           if (voice.portamento > 0x1f)
-            voice.pitch += voice.portamento & 0x1f;
+            {voice.pitch += voice.portamento & 0x1f;}
           else
-            voice.pitch -= voice.portamento;
+            {voice.pitch -= voice.portamento;}
         }
         voice.pitchBendFlag ^= 1;
 
@@ -296,8 +297,8 @@ package neoart.flod.futurecomposer {
         }
         period += voice.pitch;
 
-        if (period < 113) period = 113;
-          else if (period > 3424) period = 3424;
+        if (period < 113) {period = 113;}
+          else if (period > 3424){ period = 3424;}
 
         chan.period = period;
         chan.volume = voice.volume;
@@ -341,9 +342,9 @@ package neoart.flod.futurecomposer {
       var i:int = 0, id:String, j:int, len:int, offset:int, position:int, sample:AmigaSample, size:int, temp:int, total:int;
       id = stream.readMultiByte(4, ENCODING);
 
-      if (id == "SMOD") version = FUTURECOMP_10;
-        else if (id == "FC14") version = FUTURECOMP_14;
-          else return;
+      if (id == "SMOD") {version = FUTURECOMP_10;}
+        else if (id == "FC14") {version = FUTURECOMP_14;}
+          else {return;}
 
       stream.position = 4;
       length = stream.readUnsignedInt();
@@ -505,9 +506,9 @@ package neoart.flod.futurecomposer {
       length *= 13;
     }
 
-    public static const
-      FUTURECOMP_10 = 1,
-      FUTURECOMP_14 = 2;
+   
+    public static const FUTURECOMP_10 :int  = 1;
+    public static const FUTURECOMP_14 :int = 2;
 
     private const
       PERIODS: Vector.<int> = Vector.<int>([
@@ -521,9 +522,9 @@ package neoart.flod.futurecomposer {
          856, 808, 762, 720, 678, 640, 604, 570, 538, 508, 480, 453,
          428, 404, 381, 360, 339, 320, 302, 285, 269, 254, 240, 226,
          214, 202, 190, 180, 170, 160, 151, 143, 135, 127, 120, 113,
-         113, 113, 113, 113, 113, 113, 113, 113, 113, 113, 113, 113]),
+         113, 113, 113, 113, 113, 113, 113, 113, 113, 113, 113, 113]);
 
-      WAVES: Vector.<int> = Vector.<int>([
+     private const WAVES: Vector.<int> = Vector.<int>([
           16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,
           16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,  16,
            8,   8,   8,   8,   8,   8,   8,   8,  16,   8,  16,  16,   8,   8,  24, -64,

@@ -18,9 +18,9 @@
 package neoart.flod.core {
 
   public final class Sample {
-    public var
-      l    : Number = 0.0,
-      r    : Number = 0.0,
-      next : Sample;
+    
+     public var l    : Number = 0.0;
+     public var r    : Number = 0.0;
+     public var next : Sample;
   }
 }

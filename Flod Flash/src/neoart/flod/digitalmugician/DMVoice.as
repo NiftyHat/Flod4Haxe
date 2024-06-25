@@ -19,30 +19,30 @@ package neoart.flod.digitalmugician {
   import neoart.flod.core.*;
 
   public final class DMVoice {
-    internal var
-      channel      : AmigaChannel,
-      sample       : DMSample,
-      step         : AmigaStep,
-      note         : int,
-      period       : int,
-      val1         : int,
-      val2         : int,
-      finalPeriod  : int,
-      arpeggioStep : int,
-      effectCtr    : int,
-      pitch        : int,
-      pitchCtr     : int,
-      pitchStep    : int,
-      portamento   : int,
-      volume       : int,
-      volumeCtr    : int,
-      volumeStep   : int,
-      mixMute      : int,
-      mixPtr       : int,
-      mixEnd       : int,
-      mixSpeed     : int,
-      mixStep      : int,
-      mixVolume    : int;
+    
+    internal var channel      : AmigaChannel;
+    internal var sample       : DMSample;
+    internal var step         : AmigaStep;
+    internal var note         : int;
+    internal var period       : int;
+    internal var val1         : int;
+    internal var val2         : int;
+    internal var finalPeriod  : int;
+    internal var arpeggioStep : int;
+    internal var effectCtr    : int;
+    internal var pitch        : int;
+    internal var pitchCtr     : int;
+    internal var pitchStep    : int;
+    internal var portamento   : int;
+    internal var volume       : int;
+    internal var volumeCtr    : int;
+    internal var volumeStep   : int;
+    internal var mixMute      : int;
+    internal var mixPtr       : int;
+    internal var mixEnd       : int;
+    internal var mixSpeed     : int;
+    internal var mixStep      : int;
+    internal var mixVolume    : int;
 
     internal function initialize():void {
       sample       = null;

@@ -19,25 +19,25 @@ package neoart.flod.soundfx {
   import neoart.flod.core.*;
 
   public final class FXVoice {
-    internal var
-      index       : int,
-      next        : FXVoice,
-      channel     : AmigaChannel,
-      sample      : AmigaSample,
-      enabled     : int,
-      period      : int,
-      effect      : int,
-      param       : int,
-      volume      : int,
-      last        : int,
-      slideCtr    : int,
-      slideDir    : int,
-      slideParam  : int,
-      slidePeriod : int,
-      slideSpeed  : int,
-      stepPeriod  : int,
-      stepSpeed   : int,
-      stepWanted  : int;
+    
+    internal var index       : int;
+    internal var next        : FXVoice;
+    internal var channel     : AmigaChannel;
+    internal var sample      : AmigaSample;
+    internal var enabled     : int;
+    internal var period      : int;
+    internal var effect      : int;
+    internal var param       : int;
+    internal var volume      : int;
+    internal var last        : int;
+    internal var slideCtr    : int;
+    internal var slideDir    : int;
+    internal var slideParam  : int;
+    internal var slidePeriod : int;
+    internal var slideSpeed  : int;
+    internal var stepPeriod  : int;
+    internal var stepSpeed   : int;
+    internal var stepWanted  : int;
 
     public function FXVoice(index:int) {
       this.index = index;

@@ -21,19 +21,18 @@
   formats, with an embedded module.
 
 */
-package {
+package demos {
   import flash.display.*;
   import flash.utils.*;
   import neoart.flod.*;
   import neoart.flod.core.*;
 
   public final class Demo3 extends Sprite {
-    [Embed(source="filename.mod", mimeType="application/octet-stream")]
+    //[Embed(source="filename.mod", mimeType="application/octet-stream")]
 
-    private var
-      Song   : Class,
-      loader : FileLoader,
-      player : CorePlayer;
+    private var Song   : Class;
+    private var loader : FileLoader;
+    private var player : CorePlayer;
 
     public function Demo3() {
       loader = new FileLoader();

@@ -18,13 +18,13 @@
 package neoart.flod.fasttracker {
 
   public final class F2Envelope {
-    internal var
-      value    : int,
-      position : int,
-      frame    : int,
-      delta    : int,
-      fraction : int,
-      stopped  : int;
+    
+    internal var  value    : int;
+    internal var  position : int;
+    internal var  frame    : int;
+    internal var  delta    : int;
+    internal var  fraction : int;
+    internal var  stopped  : int;
 
     internal function reset():void {
       value    = 0;

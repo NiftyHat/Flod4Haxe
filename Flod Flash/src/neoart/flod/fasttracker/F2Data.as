@@ -18,13 +18,13 @@
 package neoart.flod.fasttracker {
 
   public final class F2Data {
-    internal var
-      points    : Vector.<F2Point>,
-      total     : int,
-      sustain   : int,
-      loopStart : int,
-      loopEnd   : int,
-      flags     : int;
+    
+    internal var points    : Vector.<F2Point>;
+    internal var total     : int;
+    internal var sustain   : int;
+    internal var loopStart : int;
+    internal var loopEnd   : int;
+    internal var flags     : int;
 
     public function F2Data() {
       points = new Vector.<F2Point>(12, true);

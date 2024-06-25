@@ -20,40 +20,40 @@ package neoart.flod.sidmon {
   import neoart.flod.core.*;
 
   public final class S1Player extends AmigaPlayer {
-    private var
-      tracksPtr   : Vector.<int>,
-      tracks      : Vector.<AmigaStep>,
-      patternsPtr : Vector.<int>,
-      patterns    : Vector.<SMRow>,
-      samples     : Vector.<S1Sample>,
-      waveLists   : Vector.<int>,
-      speedDef    : int,
-      trackLen    : int,
-      patternDef  : int,
-      mix1Speed   : int,
-      mix2Speed   : int,
-      mix1Dest    : int,
-      mix2Dest    : int,
-      mix1Source1 : int,
-      mix1Source2 : int,
-      mix2Source1 : int,
-      mix2Source2 : int,
-      doFilter    : int,
-      doReset     : int,
-      voices      : Vector.<S1Voice>,
-      trackPos    : int,
-      trackEnd    : int,
-      patternPos  : int,
-      patternEnd  : int,
-      patternLen  : int,
-      mix1Ctr     : int,
-      mix2Ctr     : int,
-      mix1Pos     : int,
-      mix2Pos     : int,
-      audPtr      : int,
-      audLen      : int,
-      audPer      : int,
-      audVol      : int;
+    
+    private var tracksPtr   : Vector.<int>;
+    private var tracks      : Vector.<AmigaStep>;
+    private var patternsPtr : Vector.<int>;
+    private var patterns    : Vector.<SMRow>;
+    private var samples     : Vector.<S1Sample>;
+    private var waveLists   : Vector.<int>;
+    private var speedDef    : int;
+    private var trackLen    : int;
+    private var patternDef  : int;
+    private var mix1Speed   : int;
+    private var mix2Speed   : int;
+    private var mix1Dest    : int;
+    private var mix2Dest    : int;
+    private var mix1Source1 : int;
+    private var mix1Source2 : int;
+    private var mix2Source1 : int;
+    private var mix2Source2 : int;
+    private var doFilter    : int;
+    private var doReset     : int;
+    private var voices      : Vector.<S1Voice>;
+    private var trackPos    : int;
+    private var trackEnd    : int;
+    private var patternPos  : int;
+    private var patternEnd  : int;
+    private var patternLen  : int;
+    private var mix1Ctr     : int;
+    private var mix2Ctr     : int;
+    private var mix1Pos     : int;
+    private var mix2Pos     : int;
+    private var audPtr      : int;
+    private var audLen      : int;
+    private var audPer      : int;
+    private var audVol      : int;
 
     public function S1Player(amiga:Amiga = null) {
       super(amiga);
@@ -78,8 +78,13 @@ package neoart.flod.sidmon {
 
         if (tick == 0) {
           if (patternEnd) {
-            if (trackEnd) voice.step = tracksPtr[voice.index];
-              else voice.step++;
+            if (trackEnd) {
+			voice.step = tracksPtr[voice.index];
+			
+			}
+              else {
+				  voice.step++;
+			  }
 
             step = tracks[voice.step];
             voice.row = patternsPtr[step.pattern];
@@ -260,8 +265,8 @@ package neoart.flod.sidmon {
         if (audPer != 0) chan.period  = voice.period;
         if (audLen != 0) chan.length  = audLen;
 
-        if (sample.volume) chan.volume = sample.volume;
-          else chan.volume = audVol >> 2;
+        if (sample.volume) {chan.volume = sample.volume;}
+          else {chan.volume = audVol >> 2;}
 
         chan.enabled = 1;
         voice = voice.next;
@@ -379,9 +384,9 @@ package neoart.flod.sidmon {
         start = stream.readUnsignedShort();
 
         if (start == 0xffd4) {
-          if (j == 0x0fec) ver = SIDMON_0FFA;
-            else if (j == 0x1466) ver = SIDMON_1444;
-              else ver = j;
+          if (j == 0x0fec) {ver = SIDMON_0FFA;}
+            else if (j == 0x1466) {ver = SIDMON_1444;}
+              else{ ver = j;}
 
           position = j + stream.position - 6;
           break;
@@ -602,8 +607,8 @@ package neoart.flod.sidmon {
               sample.length = sample.loop + sample.repeat;
 
             sample.pointer = amiga.store(stream, sample.length, data + sample.pointer);
-            if (sample.repeat < 6 || sample.loop == 0) sample.loopPtr = 0;
-              else sample.loopPtr = sample.pointer + sample.loop;
+            if (sample.repeat < 6 || sample.loop == 0) {sample.loopPtr = 0;}
+              else {sample.loopPtr = sample.pointer + sample.loop;}
 
             stream.position = j;
           }
@@ -646,18 +651,18 @@ package neoart.flod.sidmon {
       version = 1;
     }
 
-    private const
-      SIDMON_0FFA = 0x0ffa,
-      SIDMON_1170 = 0x1170,
-      SIDMON_11C6 = 0x11c6,
-      SIDMON_11DC = 0x11dc,
-      SIDMON_11E0 = 0x11e0,
-      SIDMON_125A = 0x125a,
-      SIDMON_1444 = 0x1444,
+    
+    private const SIDMON_0FFA :int = 0x0ffa;
+    private const SIDMON_1170 :int = 0x1170;
+    private const SIDMON_11C6 :int = 0x11c6;
+    private const SIDMON_11DC :int = 0x11dc;
+    private const SIDMON_11E0 :int = 0x11e0;
+    private const SIDMON_125A :int = 0x125a;
+    private const SIDMON_1444 :int = 0x1444;
 
-      EMBEDDED: Vector.<int> = Vector.<int>([1166, 408, 908]),
+    private const EMBEDDED: Vector.<int> = Vector.<int>([1166, 408, 908]);
 
-      PERIODS: Vector.<int> = Vector.<int>([0,
+    private const PERIODS: Vector.<int> = Vector.<int>([0,
         5760,5424,5120,4832,4560,4304,4064,3840,3616,3424,3232,3048,
         2880,2712,2560,2416,2280,2152,2032,1920,1808,1712,1616,1524,
         1440,1356,1280,1208,1140,1076,1016, 960, 904, 856, 808, 762,

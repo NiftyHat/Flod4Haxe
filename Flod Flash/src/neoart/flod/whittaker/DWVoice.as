@@ -19,36 +19,36 @@ package neoart.flod.whittaker {
   import neoart.flod.core.*;
 
   public final class DWVoice {
-    internal var
-      index         : int,
-      bitFlag       : int,
-      next          : DWVoice,
-      channel       : AmigaChannel,
-      sample        : DWSample,
-      trackPtr      : int,
-      trackPos      : int,
-      patternPos    : int,
-      frqseqPtr     : int,
-      frqseqPos     : int,
-      volseqPtr     : int,
-      volseqPos     : int,
-      volseqSpeed   : int,
-      volseqCounter : int,
-      halve         : int,
-      speed         : int,
-      tick          : int,
-      busy          : int,
-      flags         : int,
-      note          : int,
-      period        : int,
-      transpose     : int,
-      portaDelay    : int,
-      portaDelta    : int,
-      portaSpeed    : int,
-      vibrato       : int,
-      vibratoDelta  : int,
-      vibratoSpeed  : int,
-      vibratoDepth  : int;
+    
+    internal var index         : int;
+    internal var bitFlag       : int;
+    internal var next          : DWVoice;
+    internal var channel       : AmigaChannel;
+    internal var sample        : DWSample;
+    internal var trackPtr      : int;
+    internal var trackPos      : int;
+    internal var patternPos    : int;
+    internal var frqseqPtr     : int;
+    internal var frqseqPos     : int;
+    internal var volseqPtr     : int;
+    internal var volseqPos     : int;
+    internal var volseqSpeed   : int;
+    internal var volseqCounter : int;
+    internal var halve         : int;
+    internal var speed         : int;
+    internal var tick          : int;
+    internal var busy          : int;
+    internal var flags         : int;
+    internal var note          : int;
+    internal var period        : int;
+    internal var transpose     : int;
+    internal var portaDelay    : int;
+    internal var portaDelta    : int;
+    internal var portaSpeed    : int;
+    internal var vibrato       : int;
+    internal var vibratoDelta  : int;
+    internal var vibratoSpeed  : int;
+    internal var vibratoDepth  : int;
 
     public function DWVoice(index:int, bitFlag:int) {
       this.index = index;

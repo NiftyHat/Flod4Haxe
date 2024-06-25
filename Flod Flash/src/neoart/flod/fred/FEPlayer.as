@@ -20,14 +20,14 @@ package neoart.flod.fred {
   import neoart.flod.core.*;
 
   public final class FEPlayer extends AmigaPlayer {
-    private var
-      songs    : Vector.<FESong>,
-      samples  : Vector.<FESample>,
-      patterns : ByteArray,
-      song     : FESong,
-      voices   : Vector.<FEVoice>,
-      complete : int,
-      sampFlag : int;
+    
+    private var songs    : Vector.<FESong>;
+    private var samples  : Vector.<FESample>;
+    private var patterns : ByteArray;
+    private var song     : FESong;
+    private var voices   : Vector.<FEVoice>;
+    private var complete : int;
+    private var sampFlag : int;
 
     public function FEPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -561,8 +561,11 @@ package neoart.flod.fred {
           stream.position = basePtr + pos;
           value = stream.readUnsignedShort();
 
-          if (j == 3 && (i == (len - 1))) size = tracksLen;
-            else size = stream.readUnsignedShort();
+          if (j == 3 && (i == (len - 1))) {
+		  size = tracksLen;}
+            else {
+				size = stream.readUnsignedShort();
+			}
 
           size = (size - value) >> 1;
           if (size > song.length) song.length = size;
@@ -585,8 +588,8 @@ package neoart.flod.fred {
       stream = null;
     }
 
-    private const
-      PERIODS : Vector.<int> = Vector.<int>([
+    
+    private const PERIODS : Vector.<int> = Vector.<int>([
         8192,7728,7296,6888,6504,6136,5792,5464,5160,
         4872,4600,4336,4096,3864,3648,3444,3252,3068,
         2896,2732,2580,2436,2300,2168,2048,1932,1824,

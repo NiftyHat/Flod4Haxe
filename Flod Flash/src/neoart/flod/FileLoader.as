@@ -33,11 +33,11 @@ package neoart.flod {
   import neoart.flod.whittaker.*;
 
   public final class FileLoader {
-    private var
-      player : CorePlayer,
-      index  : int,
-      amiga  : Amiga,
-      mixer  : Soundblaster;
+    
+    private var player : CorePlayer;
+    private var index  : int;
+    private var amiga  : Amiga;
+    private var mixer  : Soundblaster;
 
     public function FileLoader() {
       amiga = new Amiga();
@@ -317,24 +317,24 @@ package neoart.flod {
       return player = null;
     }
 
-    private static const
-      SOUNDTRACKER = 0,
-      NOISETRACKER = 4,
-      PROTRACKER   = 9,
-      HISMASTER    = 12,
-      SOUNDFX      = 13,
-      BPSOUNDMON   = 17,
-      DELTAMUSIC   = 20,
-      DIGITALMUG   = 22,
-      FUTURECOMP   = 24,
-      SIDMON       = 26,
-      WHITTAKER    = 28,
-      FREDED       = 29,
-      HIPPEL       = 30,
-      HUBBARD      = 32,
-      FASTTRACKER  = 33,
+    
+     private static const SOUNDTRACKER :int = 0;
+     private static const NOISETRACKER :int = 4;
+     private static const PROTRACKER:int   = 9;
+     private static const HISMASTER :int   = 12;
+     private static const SOUNDFX  :int    = 13;
+     private static const BPSOUNDMON :int  = 17;
+     private static const DELTAMUSIC :int  = 20;
+     private static const DIGITALMUG :int  = 22;
+     private static const FUTURECOMP :int  = 24;
+     private static const SIDMON    :int   = 26;
+     private static const WHITTAKER :int   = 28;
+     private static const FREDED    :int   = 29;
+     private static const HIPPEL    :int   = 30;
+     private static const HUBBARD    :int  = 32;
+     private static const FASTTRACKER:int  = 33;
 
-      TRACKERS = [
+      private static const TRACKERS : Vector.<String> = Vector.<String> ([
         "Unknown Format",
         "Ultimate SoundTracker",
         "D.O.C. SoundTracker 9",
@@ -374,6 +374,6 @@ package neoart.flod {
         "MadTracker 2.0",
         "MilkyTracker",
         "DigiBooster Pro 2.18",
-        "OpenMPT"];
+        "OpenMPT"]);
   }
 }

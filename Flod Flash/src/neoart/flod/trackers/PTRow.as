@@ -19,7 +19,6 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class PTRow extends AmigaRow {
-    internal var
-      step : int;
+    internal var step : int;
   }
 }

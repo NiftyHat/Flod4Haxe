@@ -20,19 +20,19 @@ package neoart.flod.core {
   import flash.utils.*;
 
   public final class Amiga extends CoreMixer {
-    public static const
-      MODEL_A500  : int = 0,
-      MODEL_A1200 : int = 1;
-    public var
-      filter   : AmigaFilter,
-      model    : int = MODEL_A1200,
-      memory   : Vector.<int>,
-      channels : Vector.<AmigaChannel>,
-      loopPtr  : int,
-      loopLen  : int = 4;
-    internal var
-      clock    : Number = 0.0,
-      master   : Number = 0.00390625;
+
+    public static const  MODEL_A500  : int = 0;
+    public static const  MODEL_A1200 : int = 1;
+    
+    public var  filter   : AmigaFilter;
+    public var  model    : int = MODEL_A1200;
+    public var  memory   : Vector.<int>;
+    public var  channels : Vector.<AmigaChannel>;
+    public var  loopPtr  : int;
+    public var  loopLen  : int = 4;
+    
+    internal var  clock    : Number = 0.0;
+    internal var  master   : Number = 0.00390625;
 
     public function Amiga() {
       super();

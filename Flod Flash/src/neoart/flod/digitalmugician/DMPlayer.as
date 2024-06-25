@@ -20,26 +20,26 @@ package neoart.flod.digitalmugician {
   import neoart.flod.core.*;
 
   public final class DMPlayer extends AmigaPlayer {
-    private var
-      songs       : Vector.<DMSong>,
-      patterns    : Vector.<AmigaRow>,
-      samples     : Vector.<DMSample>,
-      voices      : Vector.<DMVoice>,
-      buffer1     : int,
-      buffer2     : int,
-      song1       : DMSong,
-      song2       : DMSong,
-      trackPos    : int,
-      patternPos  : int,
-      patternLen  : int,
-      patternEnd  : int,
-      stepEnd     : int,
-      numChannels : int,
-      arpeggios   : Vector.<int>,
-      averages    : Vector.<int>,
-      volumes     : Vector.<int>,
-      mixChannel  : AmigaChannel,
-      mixPeriod   : int;
+    
+    private var songs       : Vector.<DMSong>;
+    private var patterns    : Vector.<AmigaRow>;
+    private var samples     : Vector.<DMSample>;
+    private var voices      : Vector.<DMVoice>;
+    private var buffer1     : int;
+    private var buffer2     : int;
+    private var song1       : DMSong;
+    private var song2       : DMSong;
+    private var trackPos    : int;
+    private var patternPos  : int;
+    private var patternLen  : int;
+    private var patternEnd  : int;
+    private var stepEnd     : int;
+    private var numChannels : int;
+    private var arpeggios   : Vector.<int>;
+    private var averages    : Vector.<int>;
+    private var volumes     : Vector.<int>;
+    private var mixChannel  : AmigaChannel;
+    private var mixPeriod   : int;
 
     public function DMPlayer(amiga:Amiga = null) {
       super(amiga);
@@ -96,15 +96,24 @@ package neoart.flod.digitalmugician {
 
               if (voice.val1 == 1) {
                 idx += voice.pitch;
-                if (idx < 0) voice.period = 0;
-                  else voice.period = PERIODS[idx];
+                if (idx < 0) {
+					voice.period = 0;
+				}
+                  else {
+					  voice.period = PERIODS[idx];
+				  }
               }
             } else {
               voice.pitch = row.note;
               idx += voice.pitch;
 
-              if (idx < 0) voice.period = 0;
-                else voice.period = PERIODS[idx];
+              if (idx < 0) {
+			  voice.period = 0;
+			  
+			  }
+                else {
+					voice.period = PERIODS[idx];
+				}
             }
 
             if (voice.val1 == 11) sample.arpeggio = voice.val2 & 7;
@@ -259,14 +268,21 @@ package neoart.flod.digitalmugician {
 
                   for (j = 0; j < len; ++j) {
                     src1 = memory[dst] + value;
-                    if (src1 < -128) src1 += 256;
-                      else if (src1 > 127) src1 -= 256;
+                    if (src1 < -128) {
+						src1 += 256;
+					}
+                      else if (src1 > 127) {
+						  src1 -= 256;
+					  }
 
                     memory[dst++] = src1;
                     value += idx;
 
-                    if (value < -128) value += 256;
-                      else if (value > 127) value -= 256;
+                    if (value < -128) {
+					value += 256;}
+                      else if (value > 127) {
+						  value -= 256;
+					  }
                   }
                   break;
                 case 9:   //addition
@@ -445,8 +461,13 @@ package neoart.flod.digitalmugician {
             voice.mixSpeed = (src2 | ((dst / j) & 255)) << 8;
           }
 
-          if (voice.mixMute) voice.mixVolume = 0;
-            else voice.mixVolume = voice.volume << 8;
+          if (voice.mixMute) {
+		  voice.mixVolume = 0;
+		  
+		  }
+            else {
+				voice.mixVolume = voice.volume << 8;
+			}
         }
 
         for (i = 0; i < 350; ++i) {
@@ -569,13 +590,22 @@ package neoart.flod.digitalmugician {
       var data:int, i:int, id:String, index:Vector.<int>, instr:int, j:int, len:int, position:int, row:AmigaRow, sample:DMSample, song:DMSong, step:AmigaStep;
       id = stream.readMultiByte(24, ENCODING);
 
-      if (id == " MUGICIAN/SOFTEYES 1990 ") version = DIGITALMUG_V1;
-        else if (id == " MUGICIAN2/SOFTEYES 1990") version = DIGITALMUG_V2;
-          else return;
+      if (id == " MUGICIAN/SOFTEYES 1990 ") {
+			version = DIGITALMUG_V1;
+		}
+        else if (id == " MUGICIAN2/SOFTEYES 1990") {
+			version = DIGITALMUG_V2;
+		}
+		  else {
+			  return;
+		  }
 
       stream.position = 28;
       index = new Vector.<int>(8, true);
-      for (; i < 8; ++i) index[i] = stream.readUnsignedInt();
+      for (; i < 8; ++i) {
+		index[i] = stream.readUnsignedInt();
+	  
+	  }
 
       stream.position = 76;
 
@@ -746,9 +776,9 @@ package neoart.flod.digitalmugician {
       }
     }
 
-    public static const
-      DIGITALMUG_V1 = 1,
-      DIGITALMUG_V2 = 2;
+    
+    public static const DIGITALMUG_V1 :int = 1;
+    public static const DIGITALMUG_V2 :int = 2;
 
     private const
       PERIODS: Vector.<int> = Vector.<int>([

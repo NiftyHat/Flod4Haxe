@@ -19,16 +19,16 @@ package neoart.flod.trackers {
   import neoart.flod.core.*;
 
   public final class STVoice {
-    internal var
-      index   : int,
-      next    : STVoice,
-      channel : AmigaChannel,
-      sample  : AmigaSample,
-      enabled : int,
-      period  : int,
-      last    : int,
-      effect  : int,
-      param   : int;
+    
+    internal var index   : int;
+    internal var next    : STVoice;
+    internal var channel : AmigaChannel;
+    internal var sample  : AmigaSample;
+    internal var enabled : int;
+    internal var period  : int;
+    internal var last    : int;
+    internal var effect  : int;
+    internal var param   : int;
 
     public function STVoice(index:int) {
       this.index = index;

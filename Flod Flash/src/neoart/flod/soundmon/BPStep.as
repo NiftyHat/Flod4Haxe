@@ -19,7 +19,6 @@ package neoart.flod.soundmon {
   import neoart.flod.core.*;
 
   public final class BPStep extends AmigaStep {
-    internal var
-      soundTranspose : int;
+    internal var soundTranspose : int;
   }
 }

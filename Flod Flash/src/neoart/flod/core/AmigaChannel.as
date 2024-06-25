@@ -18,23 +18,23 @@
 package neoart.flod.core {
 
   public final class AmigaChannel {
-    public var
-      next    : AmigaChannel,
-      mute    : int,
-      panning : Number = 1.0,
-      delay   : int,
-      pointer : int,
-      length  : int;
-    internal var
-      audena  : int,
-      audcnt  : int,
-      audloc  : int,
-      audper  : int,
-      audvol  : int,
-      timer   : Number,
-      level   : Number,
-      ldata   : Number,
-      rdata   : Number;
+    
+     public var next    : AmigaChannel;
+     public var mute    : int;
+     public var panning : Number = 1.0;
+     public var delay   : int;
+     public var pointer : int;
+     public var length  : int;
+   
+      internal var audena  : int;
+      internal var audcnt  : int;
+      internal var audloc  : int;
+      internal var audper  : int;
+      internal var audvol  : int;
+      internal var timer   : Number;
+      internal var level   : Number;
+      internal var ldata   : Number;
+      internal var rdata   : Number;
 
     public function AmigaChannel(index:int) {
       if ((++index & 2) == 0) panning = -panning;
@@ -55,15 +55,23 @@ package neoart.flod.core {
     }
 
     public function set period(value:int):void {
-      if (value < 0) value = 0;
-        else if(value > 65535) value = 65535;
+      if (value < 0) {
+		value = 0;
+	  }
+        else if (value > 65535) {
+			value = 65535;
+		}
 
       audper = value;
     }
 
     public function set volume(value:int):void {
-      if (value < 0) value = 0;
-        else if (value > 64) value = 64;
+      if (value < 0) {
+	  value = 0;
+	  }
+        else if (value > 64) {
+			value = 64;
+		}
 
       audvol = value;
     }

@@ -19,9 +19,9 @@ package neoart.flod.fasttracker {
   import neoart.flod.core.*;
 
   public final class F2Sample extends SBSample {
-    public var
-      finetune : int,
-      panning  : int,
-      relative : int;
+    
+    public var finetune : int;
+    public var panning  : int;
+    public var relative : int;
   }
 }
