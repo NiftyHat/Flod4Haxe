@@ -1,114 +1,138 @@
 /*
-  Flod 4.1
-  2012/04/30
-  Christian Corti
-  Neoart Costa Rica
+	Flod 4.1
+	2012/04/30
+	Christian Corti
+	Neoart Costa Rica
 
-  Last Update: Flod 3.0 - 2012/02/08
+	Last Update: Flod 3.0 - 2012/02/08
 
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
-  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+	LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+	IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-  This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License.
-  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
-  Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
-*/
-package neoart.flod.core ;
-  import flash.events.*;
-  import flash.utils.*;
+	This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License.
+	To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to
+	Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+ */
+package neoart.flod.core;
 
-   class CoreMixer {
-    
-    public var player      : CorePlayer;
-    public var samplesTick : Int = 0;
-    
-    var buffer      : Vector<Sample>;
-    var samplesLeft : Int = 0;
-    var remains     : Int = 0;
-    var completed   : Int = 0;
-    var wave        : ByteArray;
+import flash.events.*;
+import flash.utils.*;
+import flash.Vector;
 
-    public function new() {
-      wave = new ByteArray();
-      wave.endian = "littleEndian";
-      bufferSize = 8192;
-    }
+class CoreMixer
+{
+	public var player:CorePlayer;
+	public var samplesTick:Int = 0;
 
-        public var bufferSize(get,set):Int;
-function  get_bufferSize():Int { return buffer.length; }
-function  set_bufferSize(value:Int):Int{
-      var i:Int, len = 0;
-      if (value == len || value < 2048) return value;
+	var buffer:Vector<Sample>;
+	var samplesLeft:Int = 0;
+	var remains:Int = 0;
+	var completed:Int = 0;
+	var wave:ByteArray;
 
-      if (buffer == null) {
-        buffer = new Vector<Sample>(value, true);
-      } else {
-        len = buffer.length;
-        buffer.fixed = false;
-        buffer.length = value;
-        buffer.fixed = true;
-      }
+	public function new()
+	{
+		wave = new ByteArray();
+		wave.endian = "littleEndian";
+		bufferSize = 8192;
+	}
 
-      if (value > len) {
-        buffer[len] = new Sample();
+	public var bufferSize(get, set):Int;
 
-        for (_tmp_ in ++len...value)
-{i = _tmp_;
-          buffer[i] = buffer[i - 1].next = new Sample();
-};
-      }
-return value;
-    }
+	function get_bufferSize():Int
+	{
+		return buffer.length;
+	}
 
-        public var complete(get,set):Int;
-function  get_complete():Int { return completed; }
-function  set_complete(value:Int):Int{
-      completed = value ^ player.loopSong;
-return value;
-    }
+	function set_bufferSize(value:Int):Int
+	{
+		var i:Int, len = 0;
+		if (value == len || value < 2048)
+			return value;
 
-    //js function reset
-    @:allow(neoart.flod.core) function initialize() {
-      var sample= buffer[0];
+		if (buffer == null)
+		{
+			buffer = new Vector<Sample>(value, true);
+		}
+		else
+		{
+			len = buffer.length;
+			buffer.fixed = false;
+			buffer.length = value;
+			buffer.fixed = true;
+		}
 
-      samplesLeft = 0;
-      remains     = 0;
-      completed   = 0;
+		if (value > len)
+		{
+			buffer[len] = new Sample();
 
-      while (sample != null) {
-        sample.l = sample.r = 0.0;
-        sample = sample.next;
-      }
-    }
+			for (_tmp_ in ++len...value)
+			{
+				i = _tmp_;
+				buffer[i] = buffer[i - 1].next = new Sample();
+			};
+		}
+		return value;
+	}
 
-    //js function restore
-    @:allow(neoart.flod.core) function reset() { }
+	public var complete(get, set):Int;
 
-    @:allow(neoart.flod.core) function fast(e:SampleDataEvent) { }
+	function get_complete():Int
+	{
+		return completed;
+	}
 
-    @:allow(neoart.flod.core) function accurate(e:SampleDataEvent) { }
+	function set_complete(value:Int):Int
+	{
+		completed = value ^ player.loopSong;
+		return value;
+	}
 
-    @:allow(neoart.flod.core) function waveform():ByteArray {
-      var file= new ByteArray();
-      file.endian = "littleEndian";
+	// js function reset
+	@:allow(neoart.flod.core) function initialize()
+	{
+		var sample = buffer[0];
 
-      file.writeUTFBytes("RIFF");
-      file.writeInt(wave.length + 44);
-      file.writeUTFBytes("WAVEfmt ");
-      file.writeInt(16);
-      file.writeShort(1);
-      file.writeShort(2);
-      file.writeInt(44100);
-      file.writeInt(44100 << 2);
-      file.writeShort(4);
-      file.writeShort(16);
-      file.writeUTFBytes("data");
-      file.writeInt(wave.length);
-      file.writeBytes(wave);
+		samplesLeft = 0;
+		remains = 0;
+		completed = 0;
 
-      file.position = 0;
-      return file;
-    }
-  }
+		while (sample != null)
+		{
+			sample.l = sample.r = 0.0;
+			sample = sample.next;
+		}
+	}
+
+	// js function restore
+	@:allow(neoart.flod.core) function reset() {}
+
+	@:allow(neoart.flod.core) function fast(e:SampleDataEvent) {}
+
+	@:allow(neoart.flod.core) function accurate(e:SampleDataEvent) {}
+
+	@:allow(neoart.flod.core) function waveform():ByteArray
+	{
+		var file = new ByteArray();
+		file.endian = "littleEndian";
+
+		file.writeUTFBytes("RIFF");
+		file.writeInt(wave.length + 44);
+		file.writeUTFBytes("WAVEfmt ");
+		file.writeInt(16);
+		file.writeShort(1);
+		file.writeShort(2);
+		file.writeInt(44100);
+		file.writeInt(44100 << 2);
+		file.writeShort(4);
+		file.writeShort(16);
+		file.writeUTFBytes("data");
+		file.writeInt(wave.length);
+		file.writeBytes(wave);
+
+		file.position = 0;
+		return file;
+	}
+}
