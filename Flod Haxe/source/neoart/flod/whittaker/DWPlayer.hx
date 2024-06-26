@@ -677,9 +677,10 @@ final class DWPlayer extends AmigaPlayer
 
 			switch (value)
 			{
-				case 0x4bfa:
-					if (headers != 0)
-						break;
+				case 0x4bfa if (headers == 0):
+					//FIX Haxe doesn't support switch/break
+					//if (headers != 0)
+						//break;
 					info = stream.position + stream.readShort();
 					stream.position++;
 					total = stream.readUnsignedByte();
@@ -701,9 +702,10 @@ final class DWPlayer extends AmigaPlayer
 
 					stream.position = pos;
 
-				case 0x84c3: // divu.w d3,d2
-					if (size != 0)
-						break;
+				case 0x84c3 if (size == 0): // divu.w d3,d2
+					//FIX Haxe doesn't support switch/break
+					//if (size != 0)
+						//break;
 					stream.position += 4;
 					value = stream.readUnsignedShort();
 
@@ -758,20 +760,27 @@ final class DWPlayer extends AmigaPlayer
 				case 0x207a: // movea.l x,a0
 					value = stream.position + stream.readShort();
 
+					//FIX Haxe doesn't support switch/break
+					//if (stream.readUnsignedShort() != 0x323c)
+					//{ // move.w #x,d1
+						//stream.position -= 2;
+						//break;
+					//}
 					if (stream.readUnsignedShort() != 0x323c)
 					{ // move.w #x,d1
 						stream.position -= 2;
-						break;
 					}
+					else
+					{
+						wave = samples[Std.int((value - info) / size)];
+						waveCenter = (stream.readUnsignedShort() + 1) << 1;
 
-					wave = samples[Std.int((value - info) / size)];
-					waveCenter = (stream.readUnsignedShort() + 1) << 1;
-
-					stream.position += 2;
-					waveRateNeg = stream.readByte();
-					stream.position += 12;
-					waveRatePos = stream.readByte();
-
+						stream.position += 2;
+						waveRateNeg = stream.readByte();
+						stream.position += 12;
+						waveRatePos = stream.readByte();
+						
+					}
 				case 0x046b // subi.w #x,x(a3)
 					| 0x066b: // addi.w #x,x(a3)
 					total = stream.readUnsignedShort();
@@ -809,44 +818,46 @@ final class DWPlayer extends AmigaPlayer
 			{
 				case 0x47fa: // lea x,a3
 					stream.position += 2;
-					if (stream.readUnsignedShort() != 0x4a2b)
-						break; // tst.b x(a3)
 
-					pos = stream.position;
-					stream.position += 4;
-					value = stream.readUnsignedShort();
-
-					if (value == 0x103a)
-					{ // move.b x,d0
+					//FIX Haxe doesn't support switch/break
+					//if (stream.readUnsignedShort() != 0x4a2b)
+						//break; // tst.b x(a3)
+					if (stream.readUnsignedShort() == 0x4a2b){
+						pos = stream.position;
 						stream.position += 4;
+						value = stream.readUnsignedShort();
 
-						if (stream.readUnsignedShort() == 0xc0fc)
-						{ // mulu.w #x,d0
-							value = stream.readUnsignedShort();
-							total = songs.length;
-							for (_tmp_ in 0...total)
-							{
-								i = _tmp_;
-								songs[i].delay *= value;
-							};
-							stream.position += 6;
+						if (value == 0x103a)
+						{ // move.b x,d0
+							stream.position += 4;
+
+							if (stream.readUnsignedShort() == 0xc0fc)
+							{ // mulu.w #x,d0
+								value = stream.readUnsignedShort();
+								total = songs.length;
+								for (_tmp_ in 0...total)
+								{
+									i = _tmp_;
+									songs[i].delay *= value;
+								};
+								stream.position += 6;
+							}
 						}
+						else if (value == 0x532b)
+						{ // subq.b #x,x(a3)
+							stream.position -= 8;
+						}
+
+						value = stream.readUnsignedShort();
+
+						if (value == 0x4a2b)
+						{ // tst.b x(a3)
+							stream.position = base + stream.readUnsignedShort();
+							slower = stream.readByte();
+						}
+
+						stream.position = pos;
 					}
-					else if (value == 0x532b)
-					{ // subq.b #x,x(a3)
-						stream.position -= 8;
-					}
-
-					value = stream.readUnsignedShort();
-
-					if (value == 0x4a2b)
-					{ // tst.b x(a3)
-						stream.position = base + stream.readUnsignedShort();
-						slower = stream.readByte();
-					}
-
-					stream.position = pos;
-
 				case 0x0c6b: // cmpi.w #x,x(a3)
 					stream.position -= 6;
 					value = stream.readUnsignedShort();
@@ -935,10 +946,13 @@ final class DWPlayer extends AmigaPlayer
 							frqseqs = stream.position + stream.readUnsignedShort();
 					}
 
-				case 0x4ef3: // jmp (a3,a2.w)
-					stream.position += 2;
-
-				case 0x4ed2: // jmp a2
+				//FIX AS3 fall through case
+				//case 0x4ef3: // jmp (a3,a2.w)
+				//	stream.position += 2;
+				case 0x4ed2 | 0x4ef3: // jmp a2
+					if (value == 0x4ef3)  { // jmp (a3,a2.w)
+						stream.position += 2;
+					}
 					lower = stream.position;
 					stream.position -= 10;
 					stream.position += stream.readUnsignedShort();

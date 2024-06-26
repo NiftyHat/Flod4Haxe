@@ -322,18 +322,20 @@ final class S2Player extends AmigaPlayer
 					case 0x72: // pitch down
 						voice.pitchBend = row.param;
 
-					case 0x73: // volume up
-						if (voice.adsrPos != 0)
-							break;
+					case 0x73 if (voice.adsrPos == 0): // volume up
+						//FIX Haxe doesn't support switch/break
+						//if (voice.adsrPos != 0)
+							//break;
 						if (voice.instrument != 0)
 							voice.volume = instr.attackMax;
 						voice.volume += row.param << 2;
 						if (voice.volume >= 256)
 							voice.volume = -1;
 
-					case 0x74: // volume down
-						if (voice.adsrPos != 0)
-							break;
+					case 0x74 if (voice.adsrPos == 0): // volume down
+						//FIX Haxe doesn't support switch/break
+						//if (voice.adsrPos != 0)
+							//break;
 						if (voice.instrument != 0)
 							voice.volume = instr.attackMax;
 						voice.volume -= row.param << 2;

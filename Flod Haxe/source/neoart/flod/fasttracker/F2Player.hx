@@ -380,9 +380,9 @@ final class F2Player extends SBPlayer
 								value = row.param;
 								paramx = instr.volData.total;
 
-								for (_tmp_ in 0...paramx)
+								//TODO dsaunders - check if this evaluates the same way it does in flash.
+								for (i in 0...paramx)
 								{
-									i = _tmp_;
 									if (value < instr.volData.points[i].frame)
 										break;
 								};
@@ -427,15 +427,17 @@ final class F2Player extends SBPlayer
 							if (paramy != 0)
 								voice.retrigy = paramy;
 
-							if (row.volume == 0 && voice.retrigy != 0)
-							{
+							if (row.volume == 0 && voice.retrigy != 0) {
 								com = tick + 1;
-								if (com % voice.retrigy != 0)
-									break;
-								if (row.volume > 80 && voice.retrigx != 0)
-									retrig(voice);
+								//FIX Haxe doesn't support switch/break
+								//if (com % voice.retrigy != 0)
+									//break;
+								if (com % voice.retrigy == 0){
+										if (row.volume > 80 && voice.retrigx != 0){
+											retrig(voice);
+										}
+								}	
 							}
-
 						case FX_TREMOR:
 							if (row.param != 0)
 							{
@@ -528,9 +530,8 @@ final class F2Player extends SBPlayer
 
 				switch (row.effect)
 				{
-					case FX_ARPEGGIO:
-						if (row.param == 0)
-							break;
+					//FIX Haxe doesn't support switch/break
+					case FX_ARPEGGIO if (row.param != 0):
 						value = (tick - timer) % 3;
 						if (value < 0)
 							value += 3;
@@ -674,13 +675,16 @@ final class F2Player extends SBPlayer
 						com = tick;
 						if (row.volume == 0)
 							com++;
-						if (com % voice.retrigy != 0)
-							break;
-
-						if ((row.volume == 0 || row.volume > 80) && voice.retrigx != 0)
-							retrig(voice);
-						voice.flags |= UPDATE_TRIGGER;
-
+							//FIX Haxe doesn't support switch/break
+							//if (com % voice.retrigy != 0)
+							//break;
+						if (com % voice.retrigy == 0)
+						{
+							if ((row.volume == 0 || row.volume > 80) && voice.retrigx != 0){
+								retrig(voice);
+							}
+							voice.flags |= UPDATE_TRIGGER;
+						}
 					case FX_TREMOR:
 						voice.tremor();
 				}
@@ -1344,8 +1348,9 @@ final class F2Player extends SBPlayer
 			}
 
 			ipos = stream.position;
-			if ((ipos : UInt) >= stream.length)
+			if ((ipos : UInt) >= stream.length){
 				break;
+				}
 		}
 
 		instr = new F2Instrument();

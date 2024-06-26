@@ -170,9 +170,10 @@ final class S1Player extends AmigaPlayer
 
 							switch (row.effect)
 							{
-								case 0:
-									if (row.param == 0)
-										break;
+								case 0 if (row.param > 0):
+									//FIX Haxe doesn't support switch/break
+									//if (row.param == 0)
+										//break;
 									sample.attackSpeed = row.param;
 									sample.attackMax = row.param;
 									voice.waveTimer = 0;

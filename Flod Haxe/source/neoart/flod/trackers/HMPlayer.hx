@@ -491,8 +491,7 @@ final class HMPlayer extends AmigaPlayer
 					}
 					period = voice.period;
 
-				case 4 // vibrato
-					| 6: // vibrato + volume slide;
+				case 4 | 6: // vibrato | vibrato + volume slide;
 					if (voice.effect == 6)
 					{
 						slide = 1;

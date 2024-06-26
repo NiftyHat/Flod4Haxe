@@ -163,13 +163,20 @@ final class FCPlayer extends AmigaPlayer
 
 					switch (info)
 					{
-						case 0xe2: // set wave
-							chan.enabled = 0;
-							voice.enabled = 1;
-							voice.volCtr = 1;
-							voice.volStep = 0;
+						//FIX AS3 fallthrough case.
+						//case 0xe2: // set wave
+						//	chan.enabled = 0;
+						//	voice.enabled = 1;
+						//	voice.volCtr = 1;
+						//	voice.volStep = 0;
 
-						case 0xe4: // change wave:
+						case 0xe4 | 0xe2: // change wave | set wave
+						 	if (info == 0xe2){
+								 chan.enabled = 0;
+								voice.enabled = 1;
+								voice.volCtr = 1;
+								voice.volStep = 0;
+							}
 							sample = samples[frqs.readUnsignedByte()];
 							if (sample != null)
 							{

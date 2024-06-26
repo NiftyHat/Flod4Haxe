@@ -142,9 +142,10 @@ final class STPlayer extends AmigaPlayer
 					case 14: // set filter
 						amiga.filter.active = voice.param ^ 1;
 
-					case 15: // set speed
-						if (voice.param == 0)
-							break;
+					case 15 if (voice.param != 0): // set speed
+						//FIX Haxe doesn't support switch/break
+						//if (voice.param == 0)
+							//break;
 						speed = voice.param & 0x0f;
 						tick = 0;
 				}

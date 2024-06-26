@@ -340,9 +340,10 @@ final class JHPlayer extends AmigaPlayer
 								voice.slide = 0;
 								voice.frqseqPos += 2;
 
-							case -27:
-								if (variant < 2)
-									break;
+							case -27 if (variant >= 2):
+								//FIX Haxe doesn't support switch/break
+								//if (variant < 2)
+									//break;
 								sample = samples[stream.readUnsignedByte()];
 								chan.enabled = 0;
 								voice.enabled = 1;
@@ -387,9 +388,10 @@ final class JHPlayer extends AmigaPlayer
 								voice.volseqPos = 0;
 								voice.volCounter = 1;
 
-							case -26:
-								if (variant < 3)
-									break;
+							case -26 if (variant >= 3):
+								//FIX Haxe doesn't support switch/break
+								//if (variant < 3)
+								//	break;
 
 								voice.sldLen = stream.readUnsignedShort() << 1;
 								voice.sldDelta = stream.readShort() << 1;
@@ -438,9 +440,10 @@ final class JHPlayer extends AmigaPlayer
 								voice.frqseqPos += 2;
 								loop = 1;
 
-							case -23:
-								if (variant < 2)
-									break;
+							case -23 if (variant >= 2):
+								//FIX Haxe doesn't support switch/break
+								//if (variant < 2)
+									//break;
 								sample = samples[stream.readUnsignedByte()];
 								voice.sample = -1;
 								voice.enabled = 1;

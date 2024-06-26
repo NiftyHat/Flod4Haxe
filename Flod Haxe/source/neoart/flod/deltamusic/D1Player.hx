@@ -207,11 +207,13 @@ final class D1Player extends AmigaPlayer
 
 					case 5:
 						sample.vibratoWait = row.param;
-
-					case 6:
-						sample.vibratoStep = row.param;
-
-					case 7:
+					//FIX AS3 fallthrough case.
+					//case 6:
+					//	sample.vibratoStep = row.param;
+					case 7 | 6:
+						if (row.effect == 6){
+							sample.vibratoStep = row.param;
+						}
 						sample.vibratoLen = row.param;
 
 					case 8:

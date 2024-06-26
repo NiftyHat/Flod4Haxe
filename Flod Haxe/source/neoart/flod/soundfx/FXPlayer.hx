@@ -280,11 +280,15 @@ final class FXPlayer extends AmigaPlayer
 
 						case 4: // filter off
 							amiga.filter.active = 0;
-
+						
+						//FIX AS3 fallthrough case.
+						//case 8: // step down
+						//	value = -1;
 						case 8: // step down
-							value = -1;
-
 						case 7: // step up
+							if (voice.effect == 8){
+								value = -1;
+							}
 							voice.stepSpeed = voice.param & 0x0f;
 							voice.stepPeriod = version > SOUNDFX_18 ? voice.last : voice.period;
 							if (value < 0)
